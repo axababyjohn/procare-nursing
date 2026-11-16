@@ -1,11 +1,11 @@
 name: Deploy to GitHub Pages
 
-# Build the Tailwind production CSS and publish the static site to GitHub Pages
-# on every push to main.
+# Build the Tailwind production CSS and publish the static site to GitHub Pages.
+# Deploys only from main: on a push/merge to main, or a manual run on main.
 
 on:
   push:
-    branches: [main, feature/november]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -20,6 +20,8 @@ concurrency:
 
 jobs:
   build:
+    # A manual run started from any other branch is skipped.
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
