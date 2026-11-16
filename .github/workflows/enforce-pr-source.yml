@@ -1,0 +1,33 @@
+name: Enforce PR source branch
+
+# Pull requests into main must come from a release/* branch.
+# Pull requests into release/* can come from any branch.
+# Make the "Check PR source branch" job a required status check in the
+# branch ruleset so a failing PR cannot be merged.
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize, edited]
+
+permissions:
+  contents: read
+
+jobs:
+  check-source:
+    name: Check PR source branch
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require release/* as the source for main
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          case "$HEAD_REF" in
+            release/*)
+              echo "OK: '$HEAD_REF' may be merged into main."
+              ;;
+            *)
+              echo "::error::PRs into main must come from a release/* branch. This PR comes from '$HEAD_REF'. Open the PR into a release/* branch first, then release/* into main."
+              exit 1
+              ;;
+          esac
