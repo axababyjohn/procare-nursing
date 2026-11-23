@@ -120,8 +120,8 @@ function hydrateConfig() {
 
 /* ---- Coverage area: regions -> suburbs + service type -------------
  * Renders the three regions from SITE.regions as tabs. Hovering (or
- * focusing / tapping) a region slowly fades in that region's suburbs and
- * the service types it covers, each with a tick. Panels are stacked in
+ * focusing / tapping) a region slowly fades in that region's suburbs
+ * and its service-type badge. Panels are stacked in
  * one grid cell, so the card never changes height when you switch.
  * The static list in the HTML is a no-JS fallback that this replaces.
  * ----------------------------------------------------------------- */
@@ -163,9 +163,6 @@ function initRegions() {
   const regions = (SITE.regions || []).filter((r) => r && r.name);
   if (!host || !regions.length) return;
 
-  const types = SITE.serviceTypes || {};
-  const program = SITE.programIncludes || {};
-  const programItems = (program.items || []).filter(Boolean);
   const tabs = makeEl('div', 'region-tabs');
   tabs.setAttribute('role', 'tablist');
   tabs.setAttribute('aria-label', 'Coverage regions');
@@ -200,7 +197,7 @@ function initRegions() {
     panel.setAttribute('data-tone', tone);
 
     const head = makeEl('div', 'flex flex-wrap items-center justify-between gap-2');
-    head.appendChild(makeEl('h4', '', region.name));
+    head.appendChild(makeEl('h3', '', region.name));
     const badge = makeEl('span', 'region-badge');
     badge.appendChild(makeTick());
     badge.appendChild(document.createTextNode(SERVICE_BADGE[kind]));
@@ -215,60 +212,6 @@ function initRegions() {
       chipList.appendChild(li);
     });
     panel.appendChild(chipList);
-
-    panel.appendChild(makeEl('p', 'region-label mt-5', 'Service type'));
-    const serviceList = makeEl('ul', 'mt-2 grid items-start gap-2.5 sm:grid-cols-2');
-    SERVICE_KEYS[kind].forEach((key, n) => {
-      const def = types[key] || { label: key, detail: '' };
-      const li = makeEl('li', 'region-service');
-      li.style.setProperty('--i', String(suburbs.length + n));
-      li.appendChild(makeTick());
-      const text = makeEl('div', 'min-w-0 flex-1');
-      const more = (key === 'clinical' || key === 'personal') ? programItems : [];
-
-      if (more.length) {
-        // Label is a button so keyboard and touch users can open the list too.
-        const moreId = 'region-' + i + '-' + key + '-more';
-        const toggle = makeEl('button', 'region-service-toggle');
-        toggle.type = 'button';
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.setAttribute('aria-controls', moreId);
-        toggle.appendChild(makeEl('span', 'block font-semibold text-ink-900 dark:text-cloud-50', def.label));
-        if (def.detail) toggle.appendChild(makeEl('span', 'block text-sm', def.detail));
-        const chev = makeEl('span', 'region-service-chev');
-        chev.setAttribute('aria-hidden', 'true');
-        chev.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
-        toggle.appendChild(chev);
-        text.appendChild(toggle);
-
-        const box = makeEl('div', 'region-more');
-        box.id = moreId;
-        const inner = makeEl('div', 'region-more-inner');
-        if (program.heading) inner.appendChild(makeEl('p', 'region-more-head', program.heading));
-        const list = makeEl('ul', 'region-more-list');
-        more.forEach((item) => list.appendChild(makeEl('li', '', item)));
-        inner.appendChild(list);
-        box.appendChild(inner);
-        text.appendChild(box);
-        li.classList.add('has-more');
-
-        const setOpen = (open) => {
-          li.setAttribute('data-open', String(open));
-          toggle.setAttribute('aria-expanded', String(open));
-        };
-        // Mouse: open while the cursor is on the box. Touch/keyboard: tap or
-        // Enter toggles. (Pointer type check stops a tap opening then closing.)
-        li.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') setOpen(true); });
-        li.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') setOpen(false); });
-        toggle.addEventListener('click', () => setOpen(li.getAttribute('data-open') !== 'true'));
-      } else {
-        text.appendChild(makeEl('span', 'block font-semibold text-ink-900 dark:text-cloud-50', def.label));
-        if (def.detail) text.appendChild(makeEl('span', 'block text-sm', def.detail));
-      }
-      li.appendChild(text);
-      serviceList.appendChild(li);
-    });
-    panel.appendChild(serviceList);
 
     panels.appendChild(panel);
   });
@@ -342,6 +285,14 @@ function initReveal() {
         const delay = explicit != null ? parseInt(explicit, 10) : Math.min(i * 120, 600);
         entry.target.style.transitionDelay = delay + 'ms';
         entry.target.classList.add('is-visible');
+        // Drop the stagger delay once revealed so hover transitions respond at once.
+        entry.target.addEventListener(
+          'transitionend',
+          () => {
+            entry.target.style.transitionDelay = '';
+          },
+          { once: true }
+        );
         obs.unobserve(entry.target);
       });
     },
@@ -594,7 +545,95 @@ function initReferStage() {
   apply();
 }
 
-/* ---- Footer year ------------------------------------------------- */
+/* ---- Mobile navigation (below 1280px) ----------------------------- */
+function initNav() {
+  const toggle = document.getElementById('nav-toggle');
+  const nav = document.getElementById('site-nav');
+  if (!toggle || !nav) return;
+  const iconOpen = toggle.querySelector('[data-nav-icon="open"]');
+  const iconClose = toggle.querySelector('[data-nav-icon="close"]');
+  const set = (open) => {
+    nav.classList.toggle('hidden', !open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    if (iconOpen) iconOpen.classList.toggle('hidden', open);
+    if (iconClose) iconClose.classList.toggle('hidden', !open);
+  };
+  const isOpen = () => toggle.getAttribute('aria-expanded') === 'true';
+  toggle.addEventListener('click', () => set(!isOpen()));
+  nav.addEventListener('click', (e) => {
+    if (e.target.closest('a') && isOpen()) set(false);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen()) {
+      set(false);
+      toggle.focus();
+    }
+  });
+  window.matchMedia('(min-width:1280px)').addEventListener('change', () => set(false));
+}
+/* ---- FAQ accordion: hover opens (mouse), click/tap/keys toggle ----- */
+function initFaq() {
+  const items = Array.from(document.querySelectorAll('#getting-care details.faq'));
+  if (!items.length) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const hoverMouse = window.matchMedia('(hover: hover) and (pointer: fine)');
+  const DURATION = 600;
+  const isOpen = (d) => d.dataset.open === 'true';
+  const sync = (d, open) => {
+    d.dataset.open = String(open);
+    d.querySelector('summary').setAttribute('aria-expanded', String(open));
+  };
+  const run = (d, open) => {
+    const answer = d.querySelector('.faq-answer');
+    if (d._anim) d._anim.cancel();
+    sync(d, open);
+    if (open) d.open = true;
+    if (reduce.matches) {
+      d.open = open;
+      return;
+    }
+    const cs = getComputedStyle(answer);
+    const from = answer.offsetHeight;
+    const frame = { height: '0px', paddingTop: '0px', paddingBottom: '0px' };
+    const full = {
+      height: answer.scrollHeight + 'px',
+      paddingTop: cs.paddingTop,
+      paddingBottom: cs.paddingBottom,
+    };
+    const keyframes = open ? [frame, full] : [{ ...full, height: from + 'px' }, frame];
+    d._anim = answer.animate(keyframes, { duration: DURATION, easing: 'ease', fill: 'none' });
+    d._anim.onfinish = () => {
+      d._anim = null;
+      if (!open) d.open = false;
+    };
+    d._anim.oncancel = () => {
+      d._anim = null;
+    };
+  };
+  const set = (d, open) => {
+    if (isOpen(d) !== open) run(d, open);
+  };
+  items.forEach((d) => {
+    const summary = d.querySelector('summary');
+    sync(d, d.open);
+    summary.addEventListener('click', (e) => {
+      e.preventDefault();
+      const open = !isOpen(d);
+      if (open) items.forEach((o) => o !== d && set(o, false));
+      set(d, open);
+    });
+    d.addEventListener('pointerenter', (e) => {
+      if (e.pointerType !== 'mouse' || !hoverMouse.matches) return;
+      items.forEach((o) => o !== d && set(o, false));
+      set(d, true);
+    });
+    d.addEventListener('pointerleave', (e) => {
+      if (e.pointerType !== 'mouse' || !hoverMouse.matches) return;
+      set(d, false);
+    });
+  });
+}/* ---- Footer year ------------------------------------------------- */
 function initFooterYear() {
   const el = document.getElementById('footer-year');
   if (el) el.textContent = String(new Date().getFullYear());
@@ -603,11 +642,13 @@ function initFooterYear() {
 /* ---- Bootstrap --------------------------------------------------- */
 function init() {
   initTheme();
+  initNav();
   hydrateConfig();
   initRegions();
   initReveal();
   initCallbackForm();
   initSteps();
+  initFaq();
   initReferStage();
   initFooterYear();
 }
