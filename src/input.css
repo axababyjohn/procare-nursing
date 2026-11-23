@@ -327,6 +327,16 @@
   .faq summary h3 {
     color: inherit;
   }
+  /* Open question: heading row in the standard band green, answer stays mint. */
+  .faq summary {
+    transition: background-color 600ms ease, color 600ms ease, border-radius 600ms ease;
+  }
+  .faq[data-open='true'] summary {
+    @apply rounded-b-none bg-band text-white;
+  }
+  .faq[data-open='true'] .faq-icon {
+    @apply text-white;
+  }
   .faq-icon {
     @apply relative block h-5 w-5 shrink-0 text-brand;
   }
@@ -347,6 +357,7 @@
   }
   @media (prefers-reduced-motion: reduce) {
     .faq,
+    .faq summary,
     .faq-icon::before,
     .faq-icon::after {
       transition: none;
