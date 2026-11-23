@@ -349,15 +349,59 @@
 
       <!-- =========================== GETTING CARE =========================== -->
       <section id="getting-care" class="bg-page" aria-labelledby="getting-care-heading">
-        <div class="container-x section-y grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-14">
-          <div class="lg:sticky lg:top-28 lg:self-start">
+        <div class="container-x section-y">
+          <div class="reveal max-w-2xl">
             <h2 id="getting-care-heading">Getting care</h2>
             <p class="lead mt-4">
-              Plain answers to what veterans and families ask us most. Tap or press a question to read the answer.
+              Plain answers to what veterans and families ask us most. Hover or tap a question to read the answer.
             </p>
+          </div>
 
-            <!-- Still have a question? -->
-            <div class="on-dark mt-8 rounded-2xl bg-band p-6 text-white">
+          <div class="mt-8 grid gap-6 md:mt-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:gap-10">
+          <div class="reveal grid content-start gap-3" data-reveal-delay="0">
+            <details class="faq">
+              <summary>
+                <h3 class="m-0 font-sans text-base font-semibold sm:text-[1.0625rem]">Can I receive care?</h3>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq-answer">
+                <p>Eligibility for DVA Community Nursing depends on your Veteran Card and an assessed clinical need. In most cases a referral from your GP or treating doctor starts the process.</p>
+                <p class="mt-2">If you hold a White Card, we confirm your coverage with DVA before care starts, as White Card support applies to accepted conditions.</p>
+              </div>
+            </details>
+            <details class="faq">
+              <summary>
+                <h3 class="m-0 font-sans text-base font-semibold sm:text-[1.0625rem]">Will I pay?</h3>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq-answer">
+                <p>For eligible clients, DVA-covered Community Nursing services have no out-of-pocket cost. When your care is clinically required and approved under DVA, you are not charged for the nursing we provide.</p>
+                <p class="mt-2">We will always be upfront with you about what is covered before care begins.</p>
+              </div>
+            </details>
+            <details class="faq">
+              <summary>
+                <h3 class="m-0 font-sans text-base font-semibold sm:text-[1.0625rem]">How do I start?</h3>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq-answer">
+                <p>Call our nursing team or request a callback, and we'll talk you through the next steps. A referral (including the DVA D9389 Community Nursing referral form) from your GP or hospital helps us begin.</p>
+                <p class="mt-2"><a href="#refer" class="inline-flex items-center gap-1.5 font-semibold text-brand underline-offset-4 hover:underline">See how referrals work <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a></p>
+              </div>
+            </details>
+            <details class="faq">
+              <summary>
+                <h3 class="m-0 font-sans text-base font-semibold sm:text-[1.0625rem]">What happens at the first visit?</h3>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq-answer">
+                <p>A nurse visits you at home, listens to your needs, reviews your referral, and works with you on a care plan. We explain everything clearly and answer your questions, so you feel comfortable and in control.</p>
+              </div>
+            </details>
+          </div>
+
+          <!-- Still have a question? -->
+            <div class="reveal on-dark rounded-2xl bg-band p-6 text-white lg:p-8" data-reveal-delay="90">
               <h3>Still have a question?</h3>
               <p class="mt-2 max-w-sm text-sm text-band-muted">
                 Call or message our nursing team. We're happy to talk it through, even if you're not sure you're eligible.
@@ -368,48 +412,6 @@
               </div>
               <a href="#callback" class="mt-4 inline-flex min-h-[44px] items-center gap-2 text-sm font-semibold text-band-accent hover:underline">Or request a callback <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a>
             </div>
-          </div>
-
-          <div class="grid content-start gap-3">
-            <details class="faq" name="faq" open>
-              <summary>
-                <h3 class="m-0 font-sans text-base font-semibold sm:text-[1.0625rem]">Can I receive care?</h3>
-                <span class="faq-icon" aria-hidden="true"></span>
-              </summary>
-              <div class="faq-answer">
-                <p>Eligibility for DVA Community Nursing depends on your Veteran Card and an assessed clinical need. In most cases a referral from your GP or treating doctor starts the process.</p>
-                <p class="mt-2">If you hold a White Card, we confirm your coverage with DVA before care starts, as White Card support applies to accepted conditions.</p>
-              </div>
-            </details>
-            <details class="faq" name="faq">
-              <summary>
-                <h3 class="m-0 font-sans text-base font-semibold sm:text-[1.0625rem]">Will I pay?</h3>
-                <span class="faq-icon" aria-hidden="true"></span>
-              </summary>
-              <div class="faq-answer">
-                <p>For eligible clients, DVA-covered Community Nursing services have no out-of-pocket cost. When your care is clinically required and approved under DVA, you are not charged for the nursing we provide.</p>
-                <p class="mt-2">We will always be upfront with you about what is covered before care begins.</p>
-              </div>
-            </details>
-            <details class="faq" name="faq">
-              <summary>
-                <h3 class="m-0 font-sans text-base font-semibold sm:text-[1.0625rem]">How do I start?</h3>
-                <span class="faq-icon" aria-hidden="true"></span>
-              </summary>
-              <div class="faq-answer">
-                <p>Call our nursing team or request a callback, and we'll talk you through the next steps. A referral (including the DVA D9389 Community Nursing referral form) from your GP or hospital helps us begin.</p>
-                <p class="mt-2"><a href="#refer" class="inline-flex items-center gap-1.5 font-semibold text-brand underline-offset-4 hover:underline">See how referrals work <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a></p>
-              </div>
-            </details>
-            <details class="faq" name="faq">
-              <summary>
-                <h3 class="m-0 font-sans text-base font-semibold sm:text-[1.0625rem]">What happens at the first visit?</h3>
-                <span class="faq-icon" aria-hidden="true"></span>
-              </summary>
-              <div class="faq-answer">
-                <p>A nurse visits you at home, listens to your needs, reviews your referral, and works with you on a care plan. We explain everything clearly and answer your questions, so you feel comfortable and in control.</p>
-              </div>
-            </details>
           </div>
         </div>
       </section>

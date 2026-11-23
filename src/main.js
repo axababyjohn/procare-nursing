@@ -572,7 +572,68 @@ function initNav() {
   });
   window.matchMedia('(min-width:1280px)').addEventListener('change', () => set(false));
 }
-/* ---- Footer year ------------------------------------------------- */
+/* ---- FAQ accordion: hover opens (mouse), click/tap/keys toggle ----- */
+function initFaq() {
+  const items = Array.from(document.querySelectorAll('#getting-care details.faq'));
+  if (!items.length) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const hoverMouse = window.matchMedia('(hover: hover) and (pointer: fine)');
+  const DURATION = 600;
+  const isOpen = (d) => d.dataset.open === 'true';
+  const sync = (d, open) => {
+    d.dataset.open = String(open);
+    d.querySelector('summary').setAttribute('aria-expanded', String(open));
+  };
+  const run = (d, open) => {
+    const answer = d.querySelector('.faq-answer');
+    if (d._anim) d._anim.cancel();
+    sync(d, open);
+    if (open) d.open = true;
+    if (reduce.matches) {
+      d.open = open;
+      return;
+    }
+    const cs = getComputedStyle(answer);
+    const from = answer.offsetHeight;
+    const frame = { height: '0px', paddingTop: '0px', paddingBottom: '0px' };
+    const full = {
+      height: answer.scrollHeight + 'px',
+      paddingTop: cs.paddingTop,
+      paddingBottom: cs.paddingBottom,
+    };
+    const keyframes = open ? [frame, full] : [{ ...full, height: from + 'px' }, frame];
+    d._anim = answer.animate(keyframes, { duration: DURATION, easing: 'ease', fill: 'none' });
+    d._anim.onfinish = () => {
+      d._anim = null;
+      if (!open) d.open = false;
+    };
+    d._anim.oncancel = () => {
+      d._anim = null;
+    };
+  };
+  const set = (d, open) => {
+    if (isOpen(d) !== open) run(d, open);
+  };
+  items.forEach((d) => {
+    const summary = d.querySelector('summary');
+    sync(d, d.open);
+    summary.addEventListener('click', (e) => {
+      e.preventDefault();
+      const open = !isOpen(d);
+      if (open) items.forEach((o) => o !== d && set(o, false));
+      set(d, open);
+    });
+    d.addEventListener('pointerenter', (e) => {
+      if (e.pointerType !== 'mouse' || !hoverMouse.matches) return;
+      items.forEach((o) => o !== d && set(o, false));
+      set(d, true);
+    });
+    d.addEventListener('pointerleave', (e) => {
+      if (e.pointerType !== 'mouse' || !hoverMouse.matches) return;
+      set(d, false);
+    });
+  });
+}/* ---- Footer year ------------------------------------------------- */
 function initFooterYear() {
   const el = document.getElementById('footer-year');
   if (el) el.textContent = String(new Date().getFullYear());
@@ -587,6 +648,7 @@ function init() {
   initReveal();
   initCallbackForm();
   initSteps();
+  initFaq();
   initReferStage();
   initFooterYear();
 }
