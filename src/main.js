@@ -200,7 +200,7 @@ function initRegions() {
     panel.setAttribute('data-tone', tone);
 
     const head = makeEl('div', 'flex flex-wrap items-center justify-between gap-2');
-    head.appendChild(makeEl('h4', '', region.name));
+    head.appendChild(makeEl('h3', '', region.name));
     const badge = makeEl('span', 'region-badge');
     badge.appendChild(makeTick());
     badge.appendChild(document.createTextNode(SERVICE_BADGE[kind]));
@@ -594,6 +594,33 @@ function initReferStage() {
   apply();
 }
 
+/* ---- Mobile navigation (below 1280px) ----------------------------- */
+function initNav() {
+  const toggle = document.getElementById('nav-toggle');
+  const nav = document.getElementById('site-nav');
+  if (!toggle || !nav) return;
+  const iconOpen = toggle.querySelector('[data-nav-icon="open"]');
+  const iconClose = toggle.querySelector('[data-nav-icon="close"]');
+  const set = (open) => {
+    nav.classList.toggle('hidden', !open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    if (iconOpen) iconOpen.classList.toggle('hidden', open);
+    if (iconClose) iconClose.classList.toggle('hidden', !open);
+  };
+  const isOpen = () => toggle.getAttribute('aria-expanded') === 'true';
+  toggle.addEventListener('click', () => set(!isOpen()));
+  nav.addEventListener('click', (e) => {
+    if (e.target.closest('a') && isOpen()) set(false);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen()) {
+      set(false);
+      toggle.focus();
+    }
+  });
+  window.matchMedia('(min-width:1280px)').addEventListener('change', () => set(false));
+}
 /* ---- Footer year ------------------------------------------------- */
 function initFooterYear() {
   const el = document.getElementById('footer-year');
@@ -603,6 +630,7 @@ function initFooterYear() {
 /* ---- Bootstrap --------------------------------------------------- */
 function init() {
   initTheme();
+  initNav();
   hydrateConfig();
   initRegions();
   initReveal();

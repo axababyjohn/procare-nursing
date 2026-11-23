@@ -8,8 +8,8 @@
       name="description"
       content="Procare Nursing is a Sydney-based, DVA-contracted Community Nursing provider. In-home wound care, medication assistance, and clinically required personal care for veterans. Call, request a callback, or refer a patient."
     />
-    <meta name="theme-color" content="#0F766E" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0B1716" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0B1D1C" media="(prefers-color-scheme: dark)" />
 
     <!-- No-flash theme: set the dark class BEFORE first paint. -->
     <script>
@@ -35,59 +35,63 @@
     <link rel="icon" href="./assets/img/favicon.svg" type="image/svg+xml" />
   </head>
 
-  <body
-    class="bg-sand-50 font-sans text-base text-ink-900 antialiased dark:bg-night-900 dark:text-cloud-50"
-  >
+  <body class="bg-page font-sans text-base text-fg antialiased">
     <!-- Skip link for keyboard users -->
     <a
       href="#main"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-teal-600 focus:px-5 focus:py-2 focus:text-white"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-btn focus:bg-brand focus:px-5 focus:py-2 focus:text-on-brand"
     >
       Skip to main content
     </a>
 
     <!-- ============================ HEADER ============================ -->
-    <header
-      class="sticky top-0 z-40 border-b border-sand-200/70 bg-sand-50/85 backdrop-blur dark:border-night-800/70 dark:bg-night-900/85"
-    >
-      <div class="container-x flex items-center justify-between gap-3 py-3">
+    <header class="sticky top-0 z-40 border-b border-line bg-page/90 backdrop-blur">
+      <div class="container-x flex h-16 items-center gap-3 xl:h-[72px]">
         <!-- Wordmark (our own branding, no DVA logo) -->
-        <a href="#top" class="flex items-center gap-2.5" aria-label="Procare Nursing home">
+        <a href="#top" class="flex min-w-0 shrink items-center gap-2.5" aria-label="Procare Nursing home">
           <span
-            class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-teal-600 text-white max-[359px]:hidden dark:bg-teal-300 dark:text-night-900"
+            class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand text-on-brand max-[399px]:hidden"
             aria-hidden="true"
           >
-            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 21s-7-4.35-9.5-8.5C1 9 2.5 5.5 6 5.5c2 0 3 1.2 3.5 2 .5-.8 1.5-2 3.5-2 3.5 0 5 3.5 3.5 7C19 16.65 12 21 12 21z" />
-            </svg>
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.35-9.5-8.5C1 9 2.5 5.5 6 5.5c2 0 3 1.2 3.5 2 .5-.8 1.5-2 3.5-2 3.5 0 5 3.5 3.5 7C19 16.65 12 21 12 21z" /></svg>
           </span>
-          <span class="font-display text-base font-semibold leading-tight tracking-tight sm:text-xl">Procare Nursing</span>
+          <span class="font-display text-base font-semibold leading-tight tracking-tight max-[339px]:text-[0.9375rem] sm:text-xl">Procare Nursing</span>
         </a>
 
-        <!-- Primary header actions -->
-        <nav class="flex items-center gap-2 sm:gap-3" aria-label="Primary">
+        <nav
+          id="site-nav"
+          aria-label="Primary"
+          class="hidden absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-line bg-page px-4 pb-4 pt-2 shadow-card xl:static xl:flex xl:max-h-none xl:flex-1 xl:justify-center xl:overflow-visible xl:border-0 xl:bg-transparent xl:p-0 xl:shadow-none"
+        >
+          <ul class="flex flex-col xl:flex-row xl:gap-6">
+            <li><a href="#care" class="nav-link">Care</a></li>
+            <li><a href="#coverage" class="nav-link">Coverage</a></li>
+            <li><a href="#how-it-works" class="nav-link">How it works</a></li>
+            <li><a href="#refer" class="nav-link">Refer</a></li>
+            <li><a href="#existing-clients" class="nav-link">Existing clients</a></li>
+          </ul>
+          <a href="#callback" class="btn-primary mt-3 w-full xl:hidden">Request a callback</a>
+        </nav>
+
+        <div class="ml-auto flex shrink-0 items-center gap-2">
+          <a href="#callback" class="btn-primary hidden xl:inline-flex">Request a callback</a>
+
           <a
             data-config="contact.phoneHref"
             data-config-attr="tel-href"
             href="tel:+61414013602"
-            class="btn-primary whitespace-nowrap px-3 py-2 text-sm sm:px-5"
+            class="btn-phone w-11 shrink-0 whitespace-nowrap px-0 sm:w-auto sm:px-4 xl:w-11 xl:px-0"
           >
-            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
-            </svg>
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
             <span class="sr-only">Call</span>
-            <span data-config="contact.phone">0414 013 602</span>
-          </a>
-
-          <a href="#callback" class="hidden btn-secondary px-4 py-2 text-sm sm:inline-flex">
-            Request a callback
+            <span data-config="contact.phone" class="sr-only sm:not-sr-only xl:sr-only">0414 013 602</span>
           </a>
 
           <!-- Theme toggle -->
           <button
             id="theme-toggle"
             type="button"
-            class="grid h-10 w-10 place-items-center rounded-full border border-sand-200 bg-sand-50 text-ink-900 transition hover:bg-sand-100 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-teal-600/40 dark:border-night-800 dark:bg-night-800 dark:text-cloud-50"
+            class="grid h-11 w-11 place-items-center rounded-btn border border-line bg-surface text-fg transition-colors hover:bg-brand-soft"
             aria-label="Switch between light and dark theme"
             aria-pressed="false"
           >
@@ -101,7 +105,20 @@
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
             </svg>
           </button>
-        </nav>
+
+          <!-- Menu toggle (below 1280px) -->
+          <button
+            id="nav-toggle"
+            type="button"
+            class="grid h-11 w-11 place-items-center rounded-btn border border-line bg-surface text-fg transition-colors hover:bg-brand-soft xl:hidden"
+            aria-expanded="false"
+            aria-controls="site-nav"
+            aria-label="Open menu"
+          >
+            <svg data-nav-icon="open" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+            <svg data-nav-icon="close" class="hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -110,382 +127,339 @@
       <span id="top" class="sr-only">Top of page</span>
 
       <!-- ============================ HERO ============================ -->
-      <section
-        class="hero-glow relative overflow-hidden"
-        aria-labelledby="hero-heading"
-      >
-        <!-- Faded background photo: a nurse caring for a patient in bed.
-             Decorative, blurred, low-opacity. Applied as a CSS background
-             (not an <img>) so it is never treated as the LCP element. A
-             gradient wash over it keeps the headline readable. -->
-        <div class="hero-bg pointer-events-none absolute inset-0" aria-hidden="true"></div>
-        <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-sand-50/85 via-sand-50/55 to-sand-50/20 dark:from-night-900/88 dark:via-night-900/65 dark:to-night-900/35" aria-hidden="true"></div>
-        <!-- Readability wash so text stays crisp over the art. -->
-        <div
-          class="pointer-events-none absolute inset-0 bg-gradient-to-br from-sand-50 via-sand-50/60 to-transparent dark:from-night-900 dark:via-night-900/60"
-          aria-hidden="true"
-        ></div>
+      <section class="relative overflow-hidden bg-gradient-to-b from-tint to-page" aria-labelledby="hero-heading">
+        <div class="pointer-events-none absolute -right-40 -top-40 h-[32rem] w-[32rem] rounded-full bg-brand-soft/50" aria-hidden="true"></div>
 
-        <div class="section relative grid items-center gap-10 pb-10 pt-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:gap-12 lg:pb-14 lg:pt-12">
-          <div class="max-w-2xl">
-            <p
-              class="reveal font-sans text-sm font-semibold uppercase tracking-widest text-teal-700 dark:text-teal-300"
-              data-reveal-delay="0"
-            >
+        <div class="container-x relative grid items-center gap-10 pb-12 pt-10 sm:pt-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-14 lg:pb-28 lg:pt-20">
+          <div>
+            <p class="reveal eyebrow" data-reveal-delay="0">
               DVA-contracted Community Nursing provider
             </p>
 
             <h1
               id="hero-heading"
-              class="reveal mt-4 font-display text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl"
+              class="reveal mt-4 lg:max-xl:text-[3.25rem]"
               data-reveal-delay="90"
             >
               Caring for those who served,
-              <span class="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent dark:from-teal-300 dark:to-teal-400">
-                in the comfort of home.</span>
+              <span class="text-brand">in the comfort of home.</span>
             </h1>
 
-            <p
-              class="reveal mt-5 max-w-xl text-lg leading-relaxed text-ink-700 dark:text-cloud-200 sm:text-xl"
-              data-reveal-delay="180"
-            >
+            <p class="reveal lead mt-5 max-w-xl" data-reveal-delay="180">
               Procare Nursing brings registered nurses to veterans across Greater Sydney, for
               wound care, medication support, and clinically required personal care. Not sure
               if you're eligible? Just call. We'll help you work it out.
             </p>
 
-            <!-- CTA buttons: three rows. Rows 1-2 sit left under the headline; the
-                 last row (Existing clients) is centred under them. On phones
-                 each button is full width and stacked. -->
-            <div class="reveal mt-9 flex w-full flex-col gap-3 sm:w-fit" data-reveal-delay="270">
+            <!-- CTA buttons: rows 1-2 are buttons, row 3 is a text link. On phones
+                 every button is full width and stacked. -->
+            <div class="reveal mt-9 flex w-full flex-col gap-3" data-reveal-delay="270">
               <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-
-              <a
-                data-config="contact.phoneHref"
-                data-config-attr="tel-href"
-                href="tel:+61414013602"
-                class="btn-primary"
-              >
-                <svg viewBox="0 0 24 24" class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
-                Call our nursing team
-              </a>
-              <a
-                data-config="contact.whatsapp"
-                data-config-attr="whatsapp-href"
-                data-whatsapp
-                href="https://wa.me/61414013602"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn-whatsapp justify-center px-6 py-3 text-base leading-none [&>svg]:h-5 [&>svg]:w-5 [&>svg]:shrink-0"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.735-.979a9.9 9.9 0 00.244.372zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51a12.4 12.4 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                WhatsApp
-              </a>
+                <a
+                  data-config="contact.phoneHref"
+                  data-config-attr="tel-href"
+                  href="tel:+61414013602"
+                  class="btn-primary"
+                >
+                  <svg viewBox="0 0 24 24" class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+                  Call our nursing team
+                </a>
+                <a
+                  data-config="contact.whatsapp"
+                  data-config-attr="whatsapp-href"
+                  data-whatsapp
+                  href="https://wa.me/61414013602"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-whatsapp btn-lg"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.735-.979a9.9 9.9 0 00.244.372zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51a12.4 12.4 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                  WhatsApp
+                </a>
               </div>
               <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a href="#callback" class="btn-secondary">Request a callback</a>
                 <a href="#refer" class="btn-secondary">Refer a patient</a>
               </div>
-              <div class="flex flex-col gap-3 sm:flex-row sm:justify-center">
-                <a href="#existing-clients" class="btn-secondary">Existing clients</a>
+              <div>
+                <a href="#existing-clients" class="inline-flex min-h-[44px] items-center gap-2 font-semibold text-brand hover:underline">Existing clients <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a>
               </div>
             </div>
-
           </div>
 
           <!-- Hero feature photo: a nurse caring for a patient at home. -->
-          <div class="reveal-right group relative" data-reveal-delay="200">
-            <div class="overflow-hidden rounded-3xl border border-sand-200 shadow-soft-lg dark:border-night-800">
+          <figure class="reveal-right group relative isolate m-0" data-reveal-delay="200">
+            <div class="absolute inset-0 -z-10 hidden translate-x-4 translate-y-4 rounded-3xl bg-brand-soft sm:block" aria-hidden="true"></div>
+            <div class="overflow-hidden rounded-3xl">
               <img
                 src="./assets/img/photos/nurse-patient.jpg"
                 alt="A registered nurse caring for an older patient at home"
                 width="900"
                 height="700"
                 fetchpriority="high"
-                class="aspect-[4/3] h-full w-full object-cover transition-transform duration-[1600ms] ease-out group-hover:scale-105"
+                class="aspect-[4/3] h-full w-full object-cover dark:brightness-90"
               />
             </div>
-            <!-- Floating trust badge -->
-            <div class="absolute -bottom-4 -left-4 hidden items-center gap-3 rounded-2xl bg-white/95 px-5 py-3 shadow-soft-lg dark:bg-night-800/95 sm:flex">
-              <span class="grid h-10 w-10 place-items-center rounded-full bg-teal-600 text-white dark:bg-teal-300 dark:text-night-900" aria-hidden="true">
-                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 7" /></svg>
+            <!-- Floating cards (decorative duplicates of the trust strip) -->
+            <div class="absolute -bottom-4 -left-4 hidden items-center gap-3 rounded-2xl bg-surface p-4 shadow-float sm:flex" aria-hidden="true">
+              <span class="icon-badge">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 7" /></svg>
               </span>
-              <span class="text-sm font-semibold leading-tight">Registered &amp; enrolled nurses<br /><span class="font-normal text-ink-700 dark:text-cloud-200">caring for you at home</span></span>
+              <span class="text-sm font-semibold leading-tight">Registered &amp; enrolled nurses<br /><span class="font-normal text-fg-body">caring for you at home</span></span>
             </div>
-          </div>
+            <div class="absolute -right-3 top-6 hidden items-center gap-3 rounded-2xl bg-surface p-4 shadow-float sm:flex" aria-hidden="true">
+              <span class="icon-badge-soft">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 8.2-8 9-4.8-.8-8-4.5-8-9V6l8-3z" /><path d="M9 12l2 2 4-4" /></svg>
+              </span>
+              <span class="text-sm font-semibold leading-tight">DVA-contracted<br /><span class="font-normal text-fg-body">Community Nursing</span></span>
+            </div>
+          </figure>
+        </div>
+
+        <!-- Trust strip: overlaps the hero's bottom padding on large screens. -->
+        <div class="container-x relative z-10 pb-10 lg:-mt-14">
+          <ul class="card-static grid divide-y divide-line sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:p-5 lg:p-6">
+            <li class="flex items-center gap-4 px-2 py-4 sm:flex-col sm:items-start sm:px-6 sm:py-2 lg:flex-row lg:items-center">
+              <span class="icon-badge-soft" aria-hidden="true"><svg viewBox="0 0 24 24" class="" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 8.2-8 9-4.8-.8-8-4.5-8-9V6l8-3z" /></svg></span>
+              <span class="text-[0.9375rem] font-semibold leading-snug text-fg">DVA-contracted Community Nursing provider</span>
+            </li>
+            <li class="flex items-center gap-4 px-2 py-4 sm:flex-col sm:items-start sm:px-6 sm:py-2 lg:flex-row lg:items-center">
+              <span class="icon-badge-soft" aria-hidden="true"><svg viewBox="0 0 24 24" class="" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.35-9.5-8.5C1 9 2.5 5.5 6 5.5c2 0 3 1.2 3.5 2 .5-.8 1.5-2 3.5-2 3.5 0 5 3.5 3.5 7C19 16.65 12 21 12 21z" /></svg></span>
+              <span class="text-[0.9375rem] font-semibold leading-snug text-fg">Registered &amp; enrolled nurses, caring for you at home</span>
+            </li>
+            <li class="flex items-center gap-4 px-2 py-4 sm:flex-col sm:items-start sm:px-6 sm:py-2 lg:flex-row lg:items-center">
+              <span class="icon-badge-soft" aria-hidden="true"><svg viewBox="0 0 24 24" class="" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg></span>
+              <span class="text-[0.9375rem] font-semibold leading-snug text-fg">Across three regions of Sydney</span>
+            </li>
+          </ul>
         </div>
       </section>
 
-      <!-- ===================== CARE & AVAILABILITY ===================== -->
-      <section id="care" class="section" aria-labelledby="care-heading">
-        <div class="reveal max-w-2xl">
-          <h2 id="care-heading" class="section-title">
-            Care we provide
-          </h2>
-          <p class="mt-4 text-lg text-ink-700 dark:text-cloud-200">
-            Clinical care delivered in the comfort of your own home by registered and enrolled
-            nurses, tailored to your assessed needs.
-          </p>
-        </div>
+      <!-- ========================= CARE WE PROVIDE ========================= -->
+      <section id="care" class="bg-page" aria-labelledby="care-heading">
+        <div class="container-x section-y">
+          <div class="reveal max-w-2xl">
+            <h2 id="care-heading">Care we provide</h2>
+            <p class="lead mt-4">
+              Clinical care delivered in the comfort of your own home by registered and enrolled
+              nurses, tailored to your assessed needs.
+            </p>
+          </div>
 
-        <!-- Service cards: photo + title always visible; hovering (or focusing /
-             tapping) fades in a coloured veil with the details. The details sit
-             over the photo, so the page never shifts. -->
-        <ul class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <!-- Wound care: teal -->
-          <li class="reveal service-card group" tabindex="0" data-reveal-delay="0">
-            <img src="./assets/img/photos/wound-care.jpg" alt="A nurse carefully dressing a patient's wound" loading="lazy" width="1000" height="400" class="photo-soft absolute inset-0 h-full w-full object-cover transition-all duration-[1600ms] ease-out group-hover:scale-110" />
-            <div class="absolute inset-0 bg-gradient-to-t from-teal-700/85 via-teal-700/25 to-transparent" aria-hidden="true"></div>
-            <div class="service-veil bg-teal-700/90" aria-hidden="true"></div>
-            <span class="absolute left-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-white/90 text-teal-700 shadow-soft" aria-hidden="true">
-              <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2a5 5 0 0 0-5 5c0 3 5 9 5 9s5-6 5-9a5 5 0 0 0-5-5z" />
-                <path d="M10 7h4M12 5v4" />
-              </svg>
+          <ul class="mt-10 grid gap-6 md:mt-12 md:grid-cols-2 lg:grid-cols-3">
+          <li class="reveal group overflow-hidden rounded-2xl border border-line bg-surface shadow-card " data-reveal-delay="0">
+            <div class="overflow-hidden">
+              <img src="./assets/img/photos/wound-care.jpg" alt="A nurse carefully dressing a patient's wound" loading="lazy" width="1000" height="400" class="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 dark:brightness-90 " />
+            </div>
+            <span class="icon-badge relative z-10 -mt-5 ml-6" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a5 5 0 0 0-5 5c0 3 5 9 5 9s5-6 5-9a5 5 0 0 0-5-5z" /><path d="M10 7h4M12 5v4" /></svg>
             </span>
-            <div class="absolute inset-x-0 bottom-0 flex flex-col-reverse p-5">
-              <h3 class="text-white">Wound care</h3>
-              <p class="service-detail mb-2 text-sm leading-relaxed text-white">
+            <div class="p-6 pt-4">
+              <h3>Wound care</h3>
+              <p class="mt-2 text-fg-body">
                 Assessment, dressing changes, and ongoing management of acute and chronic
                 wounds, following your care plan.
               </p>
             </div>
           </li>
-
-          <!-- Medication assistance: blue -->
-          <li class="reveal service-card group" tabindex="0" data-reveal-delay="90">
-            <img src="./assets/img/photos/medication.jpg" alt="Medications organised for safe daily use" loading="lazy" width="1000" height="400" class="photo-soft absolute inset-0 h-full w-full object-cover transition-all duration-[1600ms] ease-out group-hover:scale-110" />
-            <div class="absolute inset-0 bg-gradient-to-t from-blue-800/85 via-blue-800/25 to-transparent" aria-hidden="true"></div>
-            <div class="service-veil bg-blue-800/90" aria-hidden="true"></div>
-            <span class="absolute left-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-white/90 text-blue-700 shadow-soft" aria-hidden="true">
-              <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="4" y="9" width="16" height="11" rx="3" />
-                <path d="M9 9V6a3 3 0 0 1 6 0v3M12 13v3M10.5 14.5h3" />
-              </svg>
+          <li class="reveal group overflow-hidden rounded-2xl border border-line bg-surface shadow-card " data-reveal-delay="90">
+            <div class="overflow-hidden">
+              <img src="./assets/img/photos/medication.jpg" alt="Medications organised for safe daily use" loading="lazy" width="1000" height="400" class="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 dark:brightness-90 " />
+            </div>
+            <span class="icon-badge relative z-10 -mt-5 ml-6" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="3" /><path d="M9 9V6a3 3 0 0 1 6 0v3M12 13v3M10.5 14.5h3" /></svg>
             </span>
-            <div class="absolute inset-x-0 bottom-0 flex flex-col-reverse p-5">
-              <h3 class="text-white">Medication assistance</h3>
-              <p class="service-detail mb-2 text-sm leading-relaxed text-white">
+            <div class="p-6 pt-4">
+              <h3>Medication assistance</h3>
+              <p class="mt-2 text-fg-body">
                 Help managing and administering medications safely, including monitoring and
                 support to stay on track.
               </p>
             </div>
           </li>
-
-          <!-- Showering & dressing: amber -->
-          <li class="reveal service-card group sm:col-span-2 lg:col-span-1" tabindex="0" data-reveal-delay="180">
-            <img src="./assets/img/photos/personal-care.jpg" alt="A nurse supporting an older person at home with daily care" loading="lazy" width="800" height="320" class="photo-soft absolute inset-0 h-full w-full object-cover transition-all duration-[1600ms] ease-out group-hover:scale-110" />
-            <div class="absolute inset-0 bg-gradient-to-t from-amber-800/85 via-amber-800/25 to-transparent" aria-hidden="true"></div>
-            <div class="service-veil bg-amber-800/90" aria-hidden="true"></div>
-            <span class="absolute left-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-white/90 text-amber-700 shadow-soft" aria-hidden="true">
-              <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 21c0-4 3-7 7-7s7 3 7 7" />
-                <circle cx="12" cy="7" r="3.5" />
-                <path d="M3 13c2-1 3.5-1 4.5 0M16.5 13c1-1 2.5-1 4.5 0" />
-              </svg>
+          <li class="reveal group overflow-hidden rounded-2xl border border-line bg-surface shadow-card md:col-span-2 lg:col-span-1" data-reveal-delay="180">
+            <div class="overflow-hidden">
+              <img src="./assets/img/photos/personal-care.jpg" alt="A nurse supporting an older person at home with daily care" loading="lazy" width="800" height="320" class="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 dark:brightness-90 md:aspect-[21/9] lg:aspect-[16/10]" />
+            </div>
+            <span class="icon-badge relative z-10 -mt-5 ml-6" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21c0-4 3-7 7-7s7 3 7 7" /><circle cx="12" cy="7" r="3.5" /><path d="M3 13c2-1 3.5-1 4.5 0M16.5 13c1-1 2.5-1 4.5 0" /></svg>
             </span>
-            <div class="absolute inset-x-0 bottom-0 flex flex-col-reverse p-5">
-              <h3 class="text-white">Showering &amp; dressing help</h3>
-              <p class="service-detail mb-2 text-sm leading-relaxed text-white">
+            <div class="p-6 pt-4">
+              <h3>Showering &amp; dressing help</h3>
+              <p class="mt-2 text-fg-body">
                 Clinically required assistance with showering and dressing, provided with
                 dignity and respect where it is part of your care.
               </p>
             </div>
           </li>
-        </ul>
-        <!-- Suburbs + availability -->
-        <div class="mt-8 flex flex-col gap-6">
-          <!-- 2) Split row: Coverage area (left) and Getting care (right).
-               Equal widths and equal height. The Coverage card sets the row height;
-               Getting care is pinned inside its half on large screens, so opening an
-               answer never resizes or moves the Coverage card (and vice versa).
-               On tablets and phones the two simply stack. -->
-          <div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-            <!-- Coverage area: 3 regions; hovering one fades in its suburbs and
-               service type (rendered from config.js by initRegions in main.js). -->
-          <div class="reveal group overflow-hidden rounded-2xl border border-sand-200 bg-sand-100 shadow-soft dark:border-night-800 dark:bg-night-800" data-reveal-delay="0">
-            <div class="relative h-36 overflow-hidden">
-              <!-- Harbour photo sits softly faded and slowly brightens + zooms when
-                   the cursor is on the card. -->
-              <img src="./assets/img/photos/sydney.jpg" alt="Sydney Harbour, representing our Greater Sydney coverage area" loading="lazy" width="1500" height="525" class="photo-soft h-full w-full object-cover object-bottom transition-all duration-[1600ms] ease-out group-hover:scale-105" />
-              <div class="absolute inset-0 bg-gradient-to-t from-teal-700/85 via-teal-700/25 to-transparent" aria-hidden="true"></div>
-              <h3 class="absolute bottom-4 left-5 font-display text-2xl font-semibold text-white">Our coverage area</h3>
-            </div>
-            <div class="p-6">
-              <p class="text-ink-700 dark:text-cloud-200">
-                We bring nursing care to your home across three regions of Sydney.
-              </p>
-              <p class="mt-1 text-sm text-ink-700 dark:text-cloud-200">
-                Hover a region (or tap on mobile) to see the suburbs and the care we provide there.
-              </p>
+          </ul>
+        </div>
+      </section>
 
-              <div class="mt-4" data-regions>
-                <!-- No-JS fallback; replaced by the interactive regions above. -->
-                <ul class="space-y-2 text-ink-700 dark:text-cloud-200">
-                  <li><strong>South Western Sydney:</strong> Bankstown, Canterbury, Fairfield, Liverpool, Rossmore (clinical and personal care)</li>
-                  <li><strong>Sydney:</strong> Canterbury (clinical and personal care)</li>
-                  <li><strong>Western Sydney:</strong> Auburn, Blacktown, Holroyd, Kellyville, Mount Druitt, Parramatta (clinical and personal care)</li>
-                </ul>
-              </div>
-
-              <p class="mt-4 text-sm text-ink-700 dark:text-cloud-200">
-                Not sure if your suburb is covered? Call us and we'll let you know.
-              </p>
+      <!-- ============================ COVERAGE ============================ -->
+      <section id="coverage" class="bg-tint" aria-labelledby="coverage-heading">
+        <div class="container-x section-y grid items-start gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-14">
+          <div class="reveal">
+            <h2 id="coverage-heading">Our coverage area</h2>
+            <p class="lead mt-4">
+              We bring nursing care to your home across three regions of Sydney.
+            </p>
+            <p class="mt-2 text-sm text-fg-body">
+              Hover a region (or tap on mobile) to see the suburbs and the care we provide there.
+            </p>
+            <p class="mt-4 text-sm text-fg-body">
+              Not sure if your suburb is covered? Call us and we'll let you know.
+            </p>
+            <div class="mt-8 overflow-hidden rounded-3xl">
+              <img src="./assets/img/photos/sydney.jpg" alt="Sydney Harbour, representing our Greater Sydney coverage area" loading="lazy" width="1500" height="525" class="aspect-[16/9] w-full object-cover object-bottom lg:aspect-[4/3] dark:brightness-90" />
             </div>
           </div>
 
-            <div class="relative">
-              <section id="getting-care" class="reveal rounded-2xl bg-sand-200/60 p-6 dark:bg-night-800/50 lg:absolute lg:inset-0 lg:flex lg:flex-col lg:overflow-y-auto" aria-labelledby="getting-care-heading" data-reveal-delay="180">
-              <h3 id="getting-care-heading">Getting care</h3>
-              <p class="mt-1 text-sm text-ink-700 dark:text-cloud-200">
-                Plain answers to what veterans and families ask us most. Hover a question
-                (or tap on mobile) to read the answer.
-              </p>
-              <div class="mt-4 grid gap-3 lg:shrink-0">
-            <!-- Can I receive care? -->
-            <div class="qa" tabindex="0">
-              <h3 class="qa-q">
-                Can I receive care?
-                <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
-              </h3>
-              <div class="qa-a">
-                <div class="qa-a-inner">
-                  <p>Eligibility for DVA Community Nursing depends on your Veteran Card and an assessed clinical need. In most cases a referral from your GP or treating doctor starts the process.</p>
-                  <p class="mt-2">If you hold a White Card, we confirm your coverage with DVA before care starts, as White Card support applies to accepted conditions.</p>
-                </div>
-              </div>
+          <div class="reveal card-static p-5 sm:p-7" data-reveal-delay="90">
+            <div data-regions>
+              <!-- No-JS fallback; replaced by the interactive regions. -->
+              <ul class="space-y-2 text-fg-body">
+                <li><strong>South Western Sydney:</strong> Bankstown, Canterbury, Fairfield, Liverpool, Rossmore (clinical and personal care)</li>
+                <li><strong>Sydney:</strong> Canterbury (clinical and personal care)</li>
+                <li><strong>Western Sydney:</strong> Auburn, Blacktown, Holroyd, Kellyville, Mount Druitt, Parramatta (clinical and personal care)</li>
+              </ul>
             </div>
-
-            <!-- Will I pay? -->
-            <div class="qa" tabindex="0">
-              <h3 class="qa-q">
-                Will I pay?
-                <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
-              </h3>
-              <div class="qa-a">
-                <div class="qa-a-inner">
-                  <p>For eligible clients, DVA-covered Community Nursing services have no out-of-pocket cost. When your care is clinically required and approved under DVA, you are not charged for the nursing we provide.</p>
-                  <p class="mt-2">We will always be upfront with you about what is covered before care begins.</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- How do I start? -->
-            <div class="qa" tabindex="0">
-              <h3 class="qa-q">
-                How do I start?
-                <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
-              </h3>
-              <div class="qa-a">
-                <div class="qa-a-inner">
-                  <p>Call our nursing team or request a callback, and we'll talk you through the next steps. A referral (including the DVA D9389 Community Nursing referral form) from your GP or hospital helps us begin.</p>
-                  <p class="mt-2"><a href="#refer" class="font-semibold text-teal-700 underline-offset-4 hover:underline dark:text-teal-300">See how referrals work &rarr;</a></p>
-                </div>
-              </div>
-            </div>
-
-            <!-- What happens at the first visit? -->
-            <div class="qa" tabindex="0">
-              <h3 class="qa-q">
-                What happens at the first visit?
-                <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
-              </h3>
-              <div class="qa-a">
-                <div class="qa-a-inner">
-                  <p>A nurse visits you at home, listens to your needs, reviews your referral, and works with you on a care plan. We explain everything clearly and answer your questions, so you feel comfortable and in control.</p>
-                </div>
-              </div>
-            </div>
-              </div>
-              <!-- Still have a question? Stretches to fill any spare height in this
-                   half and gives way when an answer opens, so the block never needs
-                   to scroll and never leaves empty space. -->
-              <div class="mt-4 flex flex-col items-center justify-center rounded-2xl border border-teal-600/15 bg-white/70 p-6 text-center dark:border-teal-300/15 dark:bg-night-900/60 lg:flex-1">
-                <h4>Still have a question?</h4>
-                <p class="mt-2 max-w-sm text-sm text-ink-700 dark:text-cloud-200">
-                  Call or message our nursing team. We're happy to talk it through, even if you're not sure you're eligible.
-                </p>
-                <div class="mt-4 flex flex-wrap justify-center gap-2">
-                  <a data-config="contact.phoneHref" data-config-attr="tel-href" href="tel:+61414013602" class="btn-phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg><span class="sr-only">Call</span><span data-config="contact.phone">0414 013 602</span></a>
-                  <a data-config="contact.whatsapp" data-config-attr="whatsapp-href" data-whatsapp href="https://wa.me/61414013602" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Message us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.735-.979a9.9 9.9 0 00.244.372zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51a12.4 12.4 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg> WhatsApp</a>
-                </div>
-                <a href="#callback" class="mt-3 text-sm font-semibold text-teal-700 no-underline transition-colors hover:text-teal-800 dark:text-teal-300 dark:hover:text-teal-200">Or request a callback &rarr;</a>
-              </div>
-            </section>
           </div>
         </div>
       </section>
-      </div>
 
-      <!-- ======================= HOW IT WORKS ========================= -->
+      <!-- =========================== GETTING CARE =========================== -->
+      <section id="getting-care" class="bg-page" aria-labelledby="getting-care-heading">
+        <div class="container-x section-y grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-14">
+          <div class="lg:sticky lg:top-28 lg:self-start">
+            <h2 id="getting-care-heading">Getting care</h2>
+            <p class="lead mt-4">
+              Plain answers to what veterans and families ask us most. Tap or press a question to read the answer.
+            </p>
 
-      <section id="how-it-works" class="section" aria-labelledby="how-heading">
-        <div class="reveal max-w-2xl">
-          <h2 id="how-heading" class="section-title">
-            How it works
-          </h2>
-          <p class="mt-4 text-lg text-ink-700 dark:text-cloud-200">
-            Four simple steps from your first call to a care plan that fits your life.
-          </p>
-        </div>
-
-        <p class="reveal mt-3 text-sm text-ink-700 dark:text-cloud-200" data-reveal-delay="0">
-          Hover a step (or tap on mobile) to see what happens.
-        </p>
-
-        <!-- Interactive stepper: tabs start faded; the active one is highlighted
-             and its details show in the panel below. Keyboard-accessible. -->
-        <div class="reveal mt-8" data-reveal-delay="90">
-          <!-- Step selectors -->
-          <div class="grid grid-cols-2 gap-3 sm:grid-cols-4" role="tablist" aria-label="Steps to begin care" id="how-steps">
-            <button type="button" role="tab" id="step-tab-0" aria-controls="step-panel-0" aria-selected="true" class="step-tab" data-step="0">
-              <span class="step-tab-num" aria-hidden="true">
-                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
-              </span>
-              <span class="text-left"><span class="font-display text-base font-semibold">Call</span></span>
-            </button>
-
-            <button type="button" role="tab" id="step-tab-1" aria-controls="step-panel-1" aria-selected="false" class="step-tab" data-step="1">
-              <span class="step-tab-num" aria-hidden="true">
-                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2" /><rect x="8" y="2" width="8" height="4" rx="1" /><path d="M9 12l2 2 4-4" /></svg>
-              </span>
-              <span class="text-left"><span class="font-display text-base font-semibold">Referral</span></span>
-            </button>
-
-            <button type="button" role="tab" id="step-tab-2" aria-controls="step-panel-2" aria-selected="false" class="step-tab" data-step="2">
-              <span class="step-tab-num" aria-hidden="true">
-                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7" /><path d="M5 10v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9" /><path d="M12 13v4M10 15h4" /></svg>
-              </span>
-              <span class="text-left"><span class="font-display text-base font-semibold">Nurse visit</span></span>
-            </button>
-
-            <button type="button" role="tab" id="step-tab-3" aria-controls="step-panel-3" aria-selected="false" class="step-tab" data-step="3">
-              <span class="step-tab-num" aria-hidden="true">
-                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-9.5-8.5C1 9 2.5 5.5 6 5.5c2 0 3 1.2 3.5 2 .5-.8 1.5-2 3.5-2 3.5 0 5 3.5 3.5 7C19 16.65 12 21 12 21z" /></svg>
-              </span>
-              <span class="text-left"><span class="font-display text-base font-semibold">Care plan</span></span>
-            </button>
+            <!-- Still have a question? -->
+            <div class="on-dark mt-8 rounded-2xl bg-band p-6 text-white">
+              <h3>Still have a question?</h3>
+              <p class="mt-2 max-w-sm text-sm text-band-muted">
+                Call or message our nursing team. We're happy to talk it through, even if you're not sure you're eligible.
+              </p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <a data-config="contact.phoneHref" data-config-attr="tel-href" href="tel:+61414013602" class="btn-phone"><svg viewBox="0 0 24 24" class="" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg><span class="sr-only">Call</span><span data-config="contact.phone">0414 013 602</span></a>
+                <a data-config="contact.whatsapp" data-config-attr="whatsapp-href" data-whatsapp href="https://wa.me/61414013602" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Message us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.735-.979a9.9 9.9 0 00.244.372zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51a12.4 12.4 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg> WhatsApp</a>
+              </div>
+              <a href="#callback" class="mt-4 inline-flex min-h-[44px] items-center gap-2 text-sm font-semibold text-band-accent hover:underline">Or request a callback <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a>
+            </div>
           </div>
 
-          <!-- Detail panels -->
-          <div class="mt-6">
-            <div role="tabpanel" id="step-panel-0" aria-labelledby="step-tab-0" class="card">
-              <h3>Call</h3>
-              <p class="mt-2 text-ink-700 dark:text-cloud-200">Call our nursing team or request a callback. We'll talk through what help you or your family member needs, and explain what happens next — even if you're unsure about eligibility.</p>
+          <div class="grid content-start gap-3">
+            <details class="faq" name="faq" open>
+              <summary>
+                <h3 class="m-0 font-sans text-base font-semibold sm:text-[1.0625rem]">Can I receive care?</h3>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq-answer">
+                <p>Eligibility for DVA Community Nursing depends on your Veteran Card and an assessed clinical need. In most cases a referral from your GP or treating doctor starts the process.</p>
+                <p class="mt-2">If you hold a White Card, we confirm your coverage with DVA before care starts, as White Card support applies to accepted conditions.</p>
+              </div>
+            </details>
+            <details class="faq" name="faq">
+              <summary>
+                <h3 class="m-0 font-sans text-base font-semibold sm:text-[1.0625rem]">Will I pay?</h3>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq-answer">
+                <p>For eligible clients, DVA-covered Community Nursing services have no out-of-pocket cost. When your care is clinically required and approved under DVA, you are not charged for the nursing we provide.</p>
+                <p class="mt-2">We will always be upfront with you about what is covered before care begins.</p>
+              </div>
+            </details>
+            <details class="faq" name="faq">
+              <summary>
+                <h3 class="m-0 font-sans text-base font-semibold sm:text-[1.0625rem]">How do I start?</h3>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq-answer">
+                <p>Call our nursing team or request a callback, and we'll talk you through the next steps. A referral (including the DVA D9389 Community Nursing referral form) from your GP or hospital helps us begin.</p>
+                <p class="mt-2"><a href="#refer" class="inline-flex items-center gap-1.5 font-semibold text-brand underline-offset-4 hover:underline">See how referrals work <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a></p>
+              </div>
+            </details>
+            <details class="faq" name="faq">
+              <summary>
+                <h3 class="m-0 font-sans text-base font-semibold sm:text-[1.0625rem]">What happens at the first visit?</h3>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq-answer">
+                <p>A nurse visits you at home, listens to your needs, reviews your referral, and works with you on a care plan. We explain everything clearly and answer your questions, so you feel comfortable and in control.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================== HOW IT WORKS ========================== -->
+      <section id="how-it-works" class="bg-tint" aria-labelledby="how-heading">
+        <div class="container-x section-y">
+          <div class="reveal grid gap-4 lg:grid-cols-2 lg:items-end lg:gap-14">
+            <h2 id="how-heading">How it works</h2>
+            <p class="lead">
+              Four simple steps from your first call to a care plan that fits your life.
+            </p>
+          </div>
+
+          <p class="reveal mt-3 text-sm text-fg-body" data-reveal-delay="0">
+            Hover a step (or tap on mobile) to see what happens.
+          </p>
+
+          <div class="reveal mt-8" data-reveal-delay="90">
+            <!-- Step selectors -->
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4" role="tablist" aria-label="Steps to begin care" id="how-steps">
+            <button type="button" role="tab" id="step-tab-0" aria-controls="step-panel-0" aria-selected="true" class="step-tab" data-step="0">
+              <span class="step-num" aria-hidden="true">01</span>
+              <span class="text-left"><span class="font-display text-base font-semibold">Call</span></span>
+              <span class="step-tab-num" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+              </span>
+            </button>
+            <button type="button" role="tab" id="step-tab-1" aria-controls="step-panel-1" aria-selected="false" class="step-tab" data-step="1">
+              <span class="step-num" aria-hidden="true">02</span>
+              <span class="text-left"><span class="font-display text-base font-semibold">Referral</span></span>
+              <span class="step-tab-num" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2" /><rect x="8" y="2" width="8" height="4" rx="1" /><path d="M9 12l2 2 4-4" /></svg>
+              </span>
+            </button>
+            <button type="button" role="tab" id="step-tab-2" aria-controls="step-panel-2" aria-selected="false" class="step-tab" data-step="2">
+              <span class="step-num" aria-hidden="true">03</span>
+              <span class="text-left"><span class="font-display text-base font-semibold">Nurse visit</span></span>
+              <span class="step-tab-num" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7" /><path d="M5 10v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9" /><path d="M12 13v4M10 15h4" /></svg>
+              </span>
+            </button>
+            <button type="button" role="tab" id="step-tab-3" aria-controls="step-panel-3" aria-selected="false" class="step-tab" data-step="3">
+              <span class="step-num" aria-hidden="true">04</span>
+              <span class="text-left"><span class="font-display text-base font-semibold">Care plan</span></span>
+              <span class="step-tab-num" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.35-9.5-8.5C1 9 2.5 5.5 6 5.5c2 0 3 1.2 3.5 2 .5-.8 1.5-2 3.5-2 3.5 0 5 3.5 3.5 7C19 16.65 12 21 12 21z" /></svg>
+              </span>
+            </button>
             </div>
-            <div role="tabpanel" id="step-panel-1" aria-labelledby="step-tab-1" class="card hidden">
-              <h3>Referral</h3>
-              <p class="mt-2 text-ink-700 dark:text-cloud-200">Your GP, hospital, or nurse practitioner sends a written referral (such as the DVA D9389 form) directly to us. We confirm your DVA coverage before care starts.</p>
-            </div>
-            <div role="tabpanel" id="step-panel-2" aria-labelledby="step-tab-2" class="card hidden">
-              <h3>Nurse visit</h3>
-              <p class="mt-2 text-ink-700 dark:text-cloud-200">A registered nurse visits you at home, listens to your needs, and assesses your care — all in the comfort and privacy of your own home.</p>
-            </div>
-            <div role="tabpanel" id="step-panel-3" aria-labelledby="step-tab-3" class="card hidden">
-              <h3>Care plan</h3>
-              <p class="mt-2 text-ink-700 dark:text-cloud-200">We agree on an individual care plan, give you a copy, and begin ongoing in-home support tailored to you.</p>
+
+            <!-- Detail panels -->
+            <div class="mt-6">
+              <div role="tabpanel" id="step-panel-0" aria-labelledby="step-tab-0" class="step-panel">
+                <h3>Call</h3>
+                <p class="mt-2 text-fg-body">Call our nursing team or request a callback. We'll talk through what help you or your family member needs, and explain what happens next — even if you're unsure about eligibility.</p>
+              </div>
+              <div role="tabpanel" id="step-panel-1" aria-labelledby="step-tab-1" class="step-panel hidden">
+                <h3>Referral</h3>
+                <p class="mt-2 text-fg-body">Your GP, hospital, or nurse practitioner sends a written referral (such as the DVA D9389 form) directly to us. We confirm your DVA coverage before care starts.</p>
+              </div>
+              <div role="tabpanel" id="step-panel-2" aria-labelledby="step-tab-2" class="step-panel hidden">
+                <h3>Nurse visit</h3>
+                <p class="mt-2 text-fg-body">A registered nurse visits you at home, listens to your needs, and assesses your care — all in the comfort and privacy of your own home.</p>
+              </div>
+              <div role="tabpanel" id="step-panel-3" aria-labelledby="step-tab-3" class="step-panel hidden">
+                <h3>Care plan</h3>
+                <p class="mt-2 text-fg-body">We agree on an individual care plan, give you a copy, and begin ongoing in-home support tailored to you.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -494,206 +468,148 @@
       <!-- "Meet your nurse" removed for the initial launch. Re-add with a
            real, consented nurse photo and bio when available. -->
 
-      <!-- ====================== REFER A PATIENT ======================= -->
-      <div class="section-bg section-bg--harbour">
-      <section id="refer" class="section">
-        <!-- Refer a patient: a solid "front" block holds the heading and intro. On large
-             screens the three cards drift in from the right, slide BEHIND this block and
-             disappear, then loop (script adds .is-marquee; see initReferStage in
-             main.js). They pause on hover and turn static on keyboard focus.
-             On tablets, phones and with reduced motion everything is a calm static layout. -->
-        <div class="refer-row">
-        <div class="refer-stage" data-refer-stage role="region" aria-labelledby="refer-heading">
-          <div class="refer-front reveal">
-            <h2 id="refer-heading" class="section-title">Refer a patient</h2>
-            <p>
-              For GPs, hospitals, allied health, and family members. We make referrals simple
-              and keep you informed.
-            </p>
-          </div>
+      <!-- ========================= REFER A PATIENT ========================= -->
+      <section id="refer" class="bg-band">
+        <div class="container-x section-y">
+          <div class="refer-stage" data-refer-stage role="region" aria-labelledby="refer-heading">
+            <div class="on-dark reveal max-w-2xl text-white">
+              <h2 id="refer-heading">Refer a patient</h2>
+              <p class="mt-4 text-lg text-band-muted">
+                For GPs, hospitals, allied health, and family members. We make referrals simple
+                and keep you informed.
+              </p>
+            </div>
 
-          <div class="refer-cards">
-          <!-- Contact the intake team -->
-          <div class="reveal-left card card-oval card-tint-green" style="--i:0" data-reveal-delay="0">
-            <h3>Talk to our intake team</h3>
-            <dl class="mt-4 space-y-4">
-              <div>
-                <dt class="text-sm font-semibold uppercase tracking-wide text-teal-700 dark:text-teal-300">Phone &amp; WhatsApp</dt>
-                <dd class="oval-row mt-1 flex flex-wrap gap-2">
+            <div class="refer-cards mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <!-- Contact the intake team -->
+              <div class="reveal card-static p-7" data-reveal-delay="0">
+                <h3>Talk to our intake team</h3>
+                <dl class="mt-4 space-y-4">
+                  <div>
+                    <dt class="text-sm font-semibold uppercase tracking-wide text-brand">Phone &amp; WhatsApp</dt>
+                    <dd class="mt-1 flex flex-wrap gap-2">
+                      <a
+                        data-config="contact.phoneHref"
+                        data-config-attr="tel-href"
+                        href="tel:+61414013602"
+                        class="btn-phone"
+                      ><svg viewBox="0 0 24 24" class="" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+                        <span data-config="contact.phone">0414 013 602</span>
+                      </a>
+                      <a data-config="contact.whatsapp" data-config-attr="whatsapp-href" data-whatsapp href="https://wa.me/61414013602" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Message us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.735-.979a9.9 9.9 0 00.244.372zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51a12.4 12.4 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg> WhatsApp</a>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm font-semibold uppercase tracking-wide text-brand">Email</dt>
+                    <dd class="mt-1">
+                      <a
+                        data-config="contact.intakeEmail"
+                        data-config-attr="mailto-href"
+                        href="mailto:intake@procarenursing.com.au"
+                        class="inline-block max-w-full break-all text-[0.9rem] font-semibold text-brand underline-offset-4 hover:underline sm:text-[0.95rem]"
+                      >intake@procarenursing.com.au</a>
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+
+              <!-- Secure channel + acknowledgement -->
+              <div class="reveal card-static p-7" data-reveal-delay="90">
+                <h3>A secure referral channel</h3>
+                <p class="mt-3 text-fg-body">
+                  Send referrals through our secure intake channel so patient information stays
+                  protected. Call or email and we'll guide you to the right secure method.
+                </p>
+                <p class="mt-4 rounded-xl bg-brand-soft px-4 py-3 text-sm font-medium text-fg">
+                  We acknowledge every referral <span data-config="contact.acknowledgeTime">within 1 business day</span>.
+                </p>
+              </div>
+
+              <!-- Official DVA D9389 form -->
+              <div class="reveal card-static p-7 md:col-span-2 lg:col-span-1" data-reveal-delay="180">
+                <h3>DVA referral form</h3>
+                <p class="mt-3 text-fg-body">
+                  Use the official DVA D9389 Community Nursing referral form to refer a veteran for
+                  in-home nursing.
+                </p>
+                <p class="mt-5">
                   <a
-                    data-config="contact.phoneHref"
-                    data-config-attr="tel-href"
-                    href="tel:+61414013602"
-                    class="btn-phone"
-                  ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
-                    <span data-config="contact.phone">0414 013 602</span>
-                  </a>
-                  <a
-                    data-config="contact.whatsapp"
-                    data-config-attr="whatsapp-href"
-                    data-whatsapp
-                    href="https://wa.me/61414013602"
+                    data-config="links.d9389"
+                    data-config-attr="href"
+                    href="https://www.dva.gov.au/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="btn-whatsapp"
-                    aria-label="Message us on WhatsApp"
-                  ><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.735-.979a9.9 9.9 0 00.244.372zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51a12.4 12.4 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                    WhatsApp
+                    class="btn-primary w-full"
+                  >
+                    Open DVA D9389 form
+                    <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><path d="M15 3h6v6M10 14L21 3" /></svg>
+                    <span class="sr-only">(opens in a new tab)</span>
                   </a>
-                </dd>
+                </p>
               </div>
-              <div>
-                <dt class="text-sm font-semibold uppercase tracking-wide text-teal-700 dark:text-teal-300">Email</dt>
-                <dd class="mt-1">
-                  <a
-                    data-config="contact.intakeEmail"
-                    data-config-attr="mailto-href"
-                    href="mailto:intake@procarenursing.com.au"
-                    class="inline-block max-w-full break-all text-[0.9rem] font-semibold text-teal-700 underline-offset-4 hover:underline dark:text-teal-300 sm:text-[0.95rem]"
-                  >intake@procarenursing.com.au</a>
-                </dd>
-              </div>
-            </dl>
+            </div>
           </div>
 
-          <!-- Secure channel + acknowledgement -->
-          <div class="reveal card card-oval card-tint-green" style="--i:1" data-reveal-delay="90">
-            <h3>A secure referral channel</h3>
-            <p class="mt-3 text-ink-700 dark:text-cloud-200">
-              Send referrals through our secure intake channel so patient information stays
-              protected. Call or email and we'll guide you to the right secure method.
-            </p>
-            <p class="mt-4 rounded-2xl bg-teal-600/10 px-4 py-3 text-sm font-medium text-teal-700 dark:bg-teal-300/15 dark:text-teal-300">
-              We acknowledge every referral <span data-config="contact.acknowledgeTime">within 1 business day</span>.
-            </p>
-          </div>
-
-          <!-- Official DVA D9389 form -->
-          <div class="reveal-right card card-oval card-tint-green" style="--i:2" data-reveal-delay="180">
-            <h3>DVA referral form</h3>
-            <p class="mt-3 text-ink-700 dark:text-cloud-200">
-              Use the official DVA D9389 Community Nursing referral form to refer a veteran for
-              in-home nursing.
-            </p>
-            <p class="mt-5">
-              <a
-                data-config="links.d9389"
-                data-config-attr="href"
-                href="https://www.dva.gov.au/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn-primary w-full whitespace-nowrap px-4 text-[0.85rem] sm:text-[0.9rem]"
-              >
-                Open DVA D9389 form
-                <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                  <path d="M15 3h6v6M10 14L21 3" />
-                </svg>
-                <span class="sr-only">(opens in a new tab)</span>
-              </a>
-            </p>
-          </div>
-        </div>
-        </div>
-
-        <!-- Availability: static panel. Always sits to the right of the moving
-             Refer block on desktop (75% / 25%); stacks below it on smaller screens. -->
-        <aside class="refer-avail reveal" aria-labelledby="availability-heading" data-reveal-delay="90">
+          <!-- Availability -->
+          <aside class="on-dark reveal mt-6 rounded-2xl border border-white/15 bg-white/5 p-6 text-white" aria-labelledby="availability-heading" data-reveal-delay="90">
             <h3 id="availability-heading">Availability</h3>
-            <div class="refer-avail-grid">
-              <!-- Home visits -->
-              <div class="avail-oval border transition-all duration-500 ease-out hover:-translate-y-0.5 hover:shadow-soft">
-                <p class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-teal-700 dark:text-teal-300">
-                  <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7" /><path d="M5 10v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9" /></svg>
-                  Home visits
+            <div class="mt-4 grid divide-y divide-white/15 md:grid-cols-3 md:divide-x md:divide-y-0">
+              <div class="px-0 py-4 md:px-6 md:py-0">
+                <p class="flex items-center gap-2 text-[0.8125rem] font-semibold uppercase tracking-wide text-band-accent">
+                  <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7" /><path d="M5 10v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9" /></svg>Home visits
                 </p>
-                <p class="mt-1 text-ink-700 dark:text-cloud-200" data-config="hours.service">Scheduled home visits 7 days a week</p>
+                <p class="mt-1 text-band-fg" data-config="hours.service">Scheduled home visits 7 days a week</p>
               </div>
-              <!-- Phone hours -->
-              <div class="avail-oval border transition-all duration-500 ease-out hover:-translate-y-0.5 hover:shadow-soft">
-                <p class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-teal-700 dark:text-teal-300">
-                  <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
-                  Phone hours
+              <div class="px-0 py-4 md:px-6 md:py-0">
+                <p class="flex items-center gap-2 text-[0.8125rem] font-semibold uppercase tracking-wide text-band-accent">
+                  <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>Phone hours
                 </p>
-                <p class="mt-1 text-ink-700 dark:text-cloud-200" data-config="hours.phone">Mon to Fri, 8:00am to 6:00pm</p>
+                <p class="mt-1 text-band-fg" data-config="hours.phone">Mon to Fri, 8:00am to 6:00pm</p>
               </div>
-              <!-- Call us -->
-              <div class="avail-oval border transition-all duration-500 ease-out hover:-translate-y-0.5 hover:shadow-soft">
-                <p class="text-sm font-semibold uppercase tracking-wide text-teal-700 dark:text-teal-300">
+              <div class="px-0 py-4 md:px-6 md:py-0">
+                <p class="flex items-center gap-2 text-[0.8125rem] font-semibold uppercase tracking-wide text-band-accent">
                   Call us
                 </p>
-                <div class="avail-pills mt-1 flex flex-wrap justify-center gap-2">
-                  <a
-                    data-config="contact.phoneHref"
-                    data-config-attr="tel-href"
-                    href="tel:+61414013602"
-                    class="btn-phone"
-                  ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
-                    <span data-config="contact.phone">0414 013 602</span>
-                  </a>
-                  <a
-                    data-config="contact.whatsapp"
-                    data-config-attr="whatsapp-href"
-                    data-whatsapp
-                    href="https://wa.me/61414013602"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn-whatsapp"
-                    aria-label="Message us on WhatsApp"
-                  ><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.735-.979a9.9 9.9 0 00.244.372zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51a12.4 12.4 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                    WhatsApp
-                  </a>
+                <div class="mt-2 flex flex-wrap gap-2">
+                  <a data-config="contact.phoneHref" data-config-attr="tel-href" href="tel:+61414013602" class="btn-phone"><svg viewBox="0 0 24 24" class="" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg><span data-config="contact.phone">0414 013 602</span></a>
+                  <a data-config="contact.whatsapp" data-config-attr="whatsapp-href" data-whatsapp href="https://wa.me/61414013602" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Message us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.735-.979a9.9 9.9 0 00.244.372zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51a12.4 12.4 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg> WhatsApp</a>
                 </div>
               </div>
             </div>
-        </aside>
+          </aside>
         </div>
       </section>
-      </div>
 
-      <!-- ====================== EXISTING CLIENTS ====================== -->
-      <section
-        id="existing-clients"
-        class="bg-sand-200/50 dark:bg-night-800/40"
-        aria-labelledby="existing-heading"
-      >
-        <div class="section">
+      <!-- ======================== EXISTING CLIENTS ======================== -->
+      <section id="existing-clients" class="bg-page" aria-labelledby="existing-heading">
+        <div class="container-x section-y">
           <div class="reveal max-w-2xl">
-            <h2 id="existing-heading" class="section-title">
-              Existing clients
-            </h2>
-            <p class="mt-4 text-lg text-ink-700 dark:text-cloud-200">
+            <h2 id="existing-heading">Existing clients</h2>
+            <p class="lead mt-4">
               Already with Procare Nursing? Here's how to manage your care.
             </p>
           </div>
 
-          <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div class="mt-10 grid gap-6 md:mt-12 md:grid-cols-2 lg:grid-cols-3">
             <!-- Change a visit -->
-            <div class="reveal card card-tint-teal" data-reveal-delay="0">
-              <h3>Change or reschedule a visit</h3>
-              <p class="mt-3 text-ink-700 dark:text-cloud-200">
+            <div class="reveal card-static" data-reveal-delay="0">
+              <span class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" class="" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg></span>
+              <h3 class="mt-4">Change or reschedule a visit</h3>
+              <p class="mt-3 text-fg-body">
                 Need to move or cancel a visit? Call our team during phone hours
                 (<span data-config="hours.phone">Mon to Fri, 8:00am to 6:00pm</span>) and we'll
                 rearrange a time that suits you.
               </p>
               <div class="mt-4">
-                <a
-                  data-config="contact.phoneHref"
-                  data-config-attr="tel-href"
-                  href="tel:+61414013602"
-                  class="btn-phone"
-                >
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
-                  <span class="sr-only">Call</span>
-                  <span data-config="contact.phone">0414 013 602</span>
-                </a>
+                <a data-config="contact.phoneHref" data-config-attr="tel-href" href="tel:+61414013602" class="btn-phone"><svg viewBox="0 0 24 24" class="" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg><span class="sr-only">Call</span><span data-config="contact.phone">0414 013 602</span></a>
               </div>
             </div>
 
             <!-- Contact my nurse -->
-            <div class="reveal card card-tint-blue" data-reveal-delay="90">
-              <h3>Contact your nurse</h3>
-              <p class="mt-3 text-ink-700 dark:text-cloud-200">
+            <div class="reveal card-static" data-reveal-delay="90">
+              <span class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" class="" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg></span>
+              <h3 class="mt-4">Contact your nurse</h3>
+              <p class="mt-3 text-fg-body">
                 To pass a message to your nurse or ask about your care plan, call our intake
                 line and we'll connect you or have your nurse call you back.
               </p>
@@ -701,9 +617,10 @@
 
             <!-- After hours. The text (from config.js, hours.afterHours) already
                  includes the "medical emergency, call 000" instruction (R7.3). -->
-            <div class="reveal card card-tint-amber md:col-span-2 lg:col-span-1" data-reveal-delay="180">
-              <h3>After hours</h3>
-              <p class="mt-3 text-ink-700 dark:text-cloud-200" data-config="hours.afterHours">
+            <div class="on-dark reveal rounded-2xl bg-band p-6 text-white shadow-card sm:p-7 md:col-span-2 lg:col-span-1" data-reveal-delay="180">
+              <span class="grid h-11 w-11 place-items-center rounded-full bg-white/15 text-white" aria-hidden="true"><svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg></span>
+              <h3 class="mt-4">After hours</h3>
+              <p class="mt-3 text-band-muted" data-config="hours.afterHours">
                 For urgent clinical concerns outside phone hours, call our intake line and
                 follow the prompts. For a medical emergency, always call 000.
               </p>
@@ -712,62 +629,60 @@
         </div>
       </section>
 
-      <!-- ======================= CALLBACK FORM ======================== -->
-      <section id="callback" class="section" aria-labelledby="callback-heading">
-        <div class="grid gap-10 lg:grid-cols-5 lg:gap-12">
+      <!-- ========================== CALLBACK FORM ========================== -->
+      <section id="callback" class="bg-tint" aria-labelledby="callback-heading">
+        <div class="container-x section-y grid items-start gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-14">
           <!-- Intro + reassurance -->
-          <div class="reveal lg:col-span-2">
-            <h2 id="callback-heading" class="section-title">
-              Request a callback
-            </h2>
-            <p class="mt-4 text-lg text-ink-700 dark:text-cloud-200">
+          <div class="reveal">
+            <h2 id="callback-heading">Request a callback</h2>
+            <p class="lead mt-4">
               Leave your details and a safe time, and our nursing team will call you back. No
               account needed.
             </p>
 
             <!-- Emergency + privacy reassurance -->
-            <div class="mt-6 rounded-2xl border-2 border-red-500/60 bg-red-50 p-4 dark:border-red-400/50 dark:bg-red-950/30" role="note">
-              <p class="font-semibold text-red-700 dark:text-red-300">
+            <div class="mt-6 rounded-2xl border-2 border-danger bg-danger-soft p-4" role="note">
+              <p class="font-semibold text-danger">
                 For a medical emergency, call <a href="tel:000" class="underline">000</a>.
               </p>
             </div>
-            <p class="mt-4 text-sm text-ink-700 dark:text-cloud-200">
+            <p class="mt-4 text-sm text-fg-body">
               Please don't include medical records or your Veteran Card number. We only need
               enough to call you back safely. See our
-              <a href="./privacy.html" class="font-semibold text-teal-700 underline-offset-4 hover:underline dark:text-teal-300">privacy policy</a>.
+              <a href="./privacy.html" class="font-semibold text-brand underline-offset-4 hover:underline">privacy policy</a>.
             </p>
-            <p class="mt-4 text-sm text-ink-700 dark:text-cloud-200">
+            <p class="mt-4 text-sm text-fg-body">
               Prefer to talk now? Call
               <a
                 data-config="contact.phoneHref"
                 data-config-attr="tel-href"
                 href="tel:+61414013602"
                 class="btn-phone"
-              ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg><span data-config="contact.phone">0414 013 602</span></a>.
+              ><svg viewBox="0 0 24 24" class="" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg><span data-config="contact.phone">0414 013 602</span></a>.
             </p>
           </div>
 
-          <!-- The form -->
-          <div class="reveal card lg:col-span-3" data-reveal-delay="90">
-            <!-- Success panel (shown by main.js on success, task 13) -->
+          <!-- The form (appointment card) -->
+          <div class="reveal rounded-3xl border border-line bg-surface p-6 shadow-float sm:p-8" data-reveal-delay="90">
+            <!-- Success panel (shown by main.js on success) -->
             <div id="form-success" class="hidden" role="status" aria-live="polite">
               <div class="flex items-start gap-3">
-                <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-teal-600 text-white dark:bg-teal-300 dark:text-night-900" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 7" /></svg>
+                <span class="icon-badge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 7" /></svg>
                 </span>
                 <div>
                   <h3>Thanks, we've got your request.</h3>
-                  <p class="mt-1 text-ink-700 dark:text-cloud-200">Our nursing team will call you back at the time you chose. If it's urgent, please call us.</p>
+                  <p class="mt-1 text-fg-body">Our nursing team will call you back at the time you chose. If it's urgent, please call us.</p>
                 </div>
               </div>
             </div>
 
-            <!-- Error panel (shown by main.js on failure, task 13) -->
-            <div id="form-error" class="hidden rounded-2xl border border-red-500/60 bg-red-50 p-4 dark:border-red-400/50 dark:bg-red-950/30" role="alert">
-              <p class="font-semibold text-red-700 dark:text-red-300">Sorry, something went wrong sending your request.</p>
-              <p class="mt-1 text-sm text-red-700 dark:text-red-300">
+            <!-- Error panel (shown by main.js on failure) -->
+            <div id="form-error" class="hidden rounded-2xl border border-danger bg-danger-soft p-4" role="alert">
+              <p class="font-semibold text-danger">Sorry, something went wrong sending your request.</p>
+              <p class="mt-1 text-sm text-danger">
                 Please try again, or call us directly on
-                <a data-config="contact.phoneHref" data-config-attr="tel-href" href="tel:+61414013602" class="btn-phone align-middle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg><span class="sr-only">Call</span><span data-config="contact.phone">0414 013 602</span></a>.
+                <a data-config="contact.phoneHref" data-config-attr="tel-href" href="tel:+61414013602" class="btn-phone align-middle"><svg viewBox="0 0 24 24" class="" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg><span class="sr-only">Call</span><span data-config="contact.phone">0414 013 602</span></a>.
               </p>
             </div>
 
@@ -792,29 +707,29 @@
               </div>
 
               <div>
-                <label for="cb-name" class="block font-semibold">Your name <span class="text-red-600" aria-hidden="true">*</span></label>
+                <label for="cb-name" class="cb-label">Your name <span class="text-danger" aria-hidden="true">*</span></label>
                 <div class="cb-field">
                   <input id="cb-name" name="name" type="text" required autocomplete="name"
                   aria-describedby="cb-name-error"
                   class="cb-control" />
                   <svg viewBox="0 0 24 24" class="cb-icon" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 </div>
-                <p id="cb-name-error" class="mt-1 hidden text-sm text-red-600 dark:text-red-400"></p>
+                <p id="cb-name-error" class="mt-1 hidden text-sm text-danger"></p>
               </div>
 
               <div>
-                <label for="cb-phone" class="block font-semibold">Phone number <span class="text-red-600" aria-hidden="true">*</span></label>
+                <label for="cb-phone" class="cb-label">Phone number <span class="text-danger" aria-hidden="true">*</span></label>
                 <div class="cb-field">
                   <input id="cb-phone" name="phone" type="tel" inputmode="tel" required autocomplete="tel"
                   aria-describedby="cb-phone-error"
                   class="cb-control" />
                   <svg viewBox="0 0 24 24" class="cb-icon" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 </div>
-                <p id="cb-phone-error" class="mt-1 hidden text-sm text-red-600 dark:text-red-400"></p>
+                <p id="cb-phone-error" class="mt-1 hidden text-sm text-danger"></p>
               </div>
 
               <div>
-                <label for="cb-suburb" class="block font-semibold">Suburb <span class="text-red-600" aria-hidden="true">*</span></label>
+                <label for="cb-suburb" class="cb-label">Suburb <span class="text-danger" aria-hidden="true">*</span></label>
                 <div class="cb-field">
                   <input id="cb-suburb" name="suburb" type="text" required autocomplete="address-level2"
                   list="suburb-options" aria-describedby="cb-suburb-error"
@@ -822,11 +737,11 @@
                   <svg viewBox="0 0 24 24" class="cb-icon" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 </div>
                 <datalist id="suburb-options"></datalist>
-                <p id="cb-suburb-error" class="mt-1 hidden text-sm text-red-600 dark:text-red-400"></p>
+                <p id="cb-suburb-error" class="mt-1 hidden text-sm text-danger"></p>
               </div>
 
               <div>
-                <label for="cb-time" class="block font-semibold">Safe time to call <span class="text-red-600" aria-hidden="true">*</span></label>
+                <label for="cb-time" class="cb-label">Safe time to call <span class="text-danger" aria-hidden="true">*</span></label>
                 <div class="cb-field">
                   <select id="cb-time" name="safe_time" required aria-describedby="cb-time-error"
                   class="cb-control">
@@ -837,11 +752,11 @@
                 </select>
                   <svg viewBox="0 0 24 24" class="cb-icon" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                 </div>
-                <p id="cb-time-error" class="mt-1 hidden text-sm text-red-600 dark:text-red-400"></p>
+                <p id="cb-time-error" class="mt-1 hidden text-sm text-danger"></p>
               </div>
 
               <div class="grid gap-x-4 gap-y-2 sm:col-span-2 sm:grid-cols-2 sm:items-center">
-                <label for="cb-whofor" class="block font-semibold">Who is this for? <span class="text-red-600" aria-hidden="true">*</span></label>
+                <label for="cb-whofor" class="cb-label">Who is this for? <span class="text-danger" aria-hidden="true">*</span></label>
                 <div class="cb-field">
                   <select id="cb-whofor" name="who_for" required aria-describedby="cb-whofor-error" class="cb-control">
                     <option value="">Choose one…</option>
@@ -851,16 +766,16 @@
                   </select>
                   <svg viewBox="0 0 24 24" class="cb-icon" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
                 </div>
-                <p id="cb-whofor-error" class="hidden sm:col-start-2 text-sm text-red-600 dark:text-red-400"></p>
+                <p id="cb-whofor-error" class="hidden text-sm text-danger sm:col-start-2"></p>
               </div>
 
               <div class="sm:col-span-2">
-                <label for="cb-message" class="block font-semibold">Message <span class="font-normal text-ink-700 dark:text-cloud-200">(optional)</span></label>
-                <textarea id="cb-message" name="message" rows="3" class="cb-control mt-2 pr-6"></textarea>
-                <p class="mt-1 text-sm text-ink-700 dark:text-cloud-200">Please don't include medical details or Veteran Card numbers.</p>
+                <label for="cb-message" class="cb-label">Message <span class="font-normal normal-case tracking-normal text-muted">(optional)</span></label>
+                <textarea id="cb-message" name="message" rows="3" class="cb-control mt-2"></textarea>
+                <p class="mt-1 text-sm text-muted">Please don't include medical details or Veteran Card numbers.</p>
               </div>
 
-              <button type="submit" id="cb-submit" class="btn-primary w-full !rounded-lg sm:col-span-2">Request my callback</button>
+              <button type="submit" id="cb-submit" class="btn-primary min-h-[56px] w-full text-base sm:col-span-2">Request my callback</button>
             </form>
           </div>
         </div>
@@ -871,19 +786,17 @@
     </main>
 
     <!-- ============================ FOOTER ============================ -->
-    <footer class="border-t border-sand-200 bg-sand-100/60 dark:border-night-800 dark:bg-night-800/40">
-      <div class="container-x grid gap-10 py-14 md:grid-cols-3">
+    <footer class="on-dark bg-footer text-white">
+      <div class="container-x grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1.2fr] lg:py-20">
         <!-- Brand + contact -->
-        <div>
+        <div class="md:col-span-2 lg:col-span-1">
           <div class="flex items-center gap-2.5">
-            <span class="grid h-9 w-9 place-items-center rounded-full bg-teal-600 text-white dark:bg-teal-300 dark:text-night-900" aria-hidden="true">
-              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 21s-7-4.35-9.5-8.5C1 9 2.5 5.5 6 5.5c2 0 3 1.2 3.5 2 .5-.8 1.5-2 3.5-2 3.5 0 5 3.5 3.5 7C19 16.65 12 21 12 21z" />
-              </svg>
+            <span class="grid h-9 w-9 place-items-center rounded-full bg-brand text-on-brand" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.35-9.5-8.5C1 9 2.5 5.5 6 5.5c2 0 3 1.2 3.5 2 .5-.8 1.5-2 3.5-2 3.5 0 5 3.5 3.5 7C19 16.65 12 21 12 21z" /></svg>
             </span>
-            <span class="font-display text-lg font-semibold">Procare Nursing</span>
+            <span class="font-display text-lg font-semibold text-white">Procare Nursing</span>
           </div>
-          <p class="mt-4 text-sm text-ink-700 dark:text-cloud-200">
+          <p class="mt-4 text-sm text-band-muted">
             In-home nursing for veterans across Greater Sydney.
           </p>
           <p class="mt-4 text-sm">
@@ -892,14 +805,14 @@
               data-config-attr="tel-href"
               href="tel:+61414013602"
               class="btn-phone"
-            ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg><span data-config="contact.phone">0414 013 602</span></a>
+            ><svg viewBox="0 0 24 24" class="" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg><span data-config="contact.phone">0414 013 602</span></a>
           </p>
-          <p class="mt-1 text-sm">
+          <p class="mt-3 text-sm">
             <a
               data-config="contact.intakeEmail"
               data-config-attr="mailto-href"
               href="mailto:intake@procarenursing.com.au"
-              class="text-teal-700 underline-offset-4 hover:underline dark:text-teal-300 break-words"
+              class="text-band-accent underline-offset-4 hover:underline break-words"
             >intake@procarenursing.com.au</a>
           </p>
         </div>
@@ -908,18 +821,18 @@
         <nav aria-label="Footer" class="text-sm">
           <h2 class="footer-label">Site</h2>
           <ul class="mt-4 space-y-2">
-            <li><a href="#care" class="text-ink-700 underline-offset-4 hover:underline dark:text-cloud-200">Care we provide</a></li>
-            <li><a href="#getting-care" class="text-ink-700 underline-offset-4 hover:underline dark:text-cloud-200">Getting care</a></li>
-            <li><a href="#refer" class="text-ink-700 underline-offset-4 hover:underline dark:text-cloud-200">Refer a patient</a></li>
-            <li><a href="#callback" class="text-ink-700 underline-offset-4 hover:underline dark:text-cloud-200">Request a callback</a></li>
-            <li><a href="./privacy.html" class="text-ink-700 underline-offset-4 hover:underline dark:text-cloud-200">Privacy policy</a></li>
+            <li><a href="#care" class="inline-flex items-center gap-2 text-band-fg underline-offset-4 hover:underline"><svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0 text-band-accent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>Care we provide</a></li>
+            <li><a href="#getting-care" class="inline-flex items-center gap-2 text-band-fg underline-offset-4 hover:underline"><svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0 text-band-accent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>Getting care</a></li>
+            <li><a href="#refer" class="inline-flex items-center gap-2 text-band-fg underline-offset-4 hover:underline"><svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0 text-band-accent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>Refer a patient</a></li>
+            <li><a href="#callback" class="inline-flex items-center gap-2 text-band-fg underline-offset-4 hover:underline"><svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0 text-band-accent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>Request a callback</a></li>
+            <li><a href="./privacy.html" class="inline-flex items-center gap-2 text-band-fg underline-offset-4 hover:underline"><svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0 text-band-accent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>Privacy policy</a></li>
           </ul>
         </nav>
 
         <!-- Legal + governance -->
         <div class="text-sm">
           <h2 class="footer-label">Legal &amp; feedback</h2>
-          <ul class="mt-4 space-y-2 text-ink-700 dark:text-cloud-200">
+          <ul class="mt-4 space-y-2 text-band-muted">
             <li><span data-config="business.legalName">Procare Nursing Pty Ltd</span></li>
             <li>ABN <span data-config="business.abn">59 698 156 964</span></li>
             <li>
@@ -928,7 +841,7 @@
                 data-config="contact.feedbackEmail"
                 data-config-attr="mailto-href"
                 href="mailto:intake@procarenursing.com.au"
-                class="text-teal-700 underline-offset-4 hover:underline dark:text-teal-300 break-words"
+                class="text-band-accent underline-offset-4 hover:underline break-words"
               >intake@procarenursing.com.au</a>
             </li>
             <li>
@@ -938,7 +851,7 @@
                 href="https://www.dva.gov.au/"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-teal-700 underline-offset-4 hover:underline dark:text-teal-300"
+                class="text-band-accent underline-offset-4 hover:underline"
               >DVA Community Nursing Client Charter
                 <span class="sr-only">(opens in a new tab)</span>
               </a>
@@ -947,8 +860,8 @@
         </div>
       </div>
 
-      <div class="border-t border-sand-200 dark:border-night-800">
-        <div class="container-x py-6 text-xs text-ink-700 dark:text-cloud-200">
+      <div class="border-t border-white/10">
+        <div class="container-x py-6 text-xs text-band-muted">
           <p>&copy; <span id="footer-year">2026</span> <span data-config="business.legalName">Procare Nursing Pty Ltd</span>. All rights reserved.</p>
         </div>
       </div>
