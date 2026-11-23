@@ -128,22 +128,23 @@
 
       <!-- ============================ HERO ============================ -->
       <section class="relative bg-page" aria-labelledby="hero-heading">
-        <div class="relative isolate flex min-h-[640px] items-center overflow-hidden bg-[#06201f] lg:min-h-[min(88vh,760px)]">
-          <!-- Hero feature photo: full-bleed background (LCP image). -->
-          <img
-            src="./assets/img/photos/nurse-patient.jpg"
-            alt="A registered nurse caring for an older patient at home"
-            width="900"
-            height="700"
-            loading="eager"
-            fetchpriority="high"
-            class="absolute inset-0 -z-20 h-full w-full object-cover object-[75%_30%] lg:object-[70%_30%]"
-          />
-          <!-- Dark overlay: vertical on phones, left-to-right on desktop. -->
-          <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[#06201f]/90 via-[#06201f]/80 to-[#06201f]/85 lg:bg-gradient-to-r lg:from-[#06201f]/90 lg:via-[#06201f]/70 lg:to-transparent" aria-hidden="true"></div>
-
-        <div class="container-x relative w-full py-14 sm:py-16 lg:py-24">
-          <div class="max-w-2xl">
+        <div class="relative isolate flex flex-col overflow-hidden bg-[#06201f] xl:min-h-[667px] xl:flex-row xl:items-center">
+          <!-- Hero feature photo (LCP image): natural 3:2 ratio. On xl+ it sits on the right and its
+               left edge blends into the teal; on phones it sits on top and fades out at the bottom. -->
+          <div class="relative aspect-[3/2] w-full xl:absolute xl:inset-y-0 xl:right-0 xl:z-0 xl:h-full xl:w-auto xl:max-w-[1000px]">
+            <img
+              src="./assets/img/photos/nurse-patient.jpg"
+              alt="A registered nurse caring for an older patient at home"
+              width="1000"
+              height="667"
+              loading="eager"
+              fetchpriority="high"
+              class="h-full w-full object-cover object-center"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#06201f] via-transparent to-transparent xl:bg-gradient-to-r xl:from-[#06201f] xl:via-[#06201f]/50 xl:via-[12%] xl:to-transparent xl:to-[32%]" aria-hidden="true"></div>
+          </div>
+        <div class="container-x relative z-10 w-full pb-12 pt-2 sm:pb-14 xl:py-24">
+          <div class="max-w-2xl xl:max-w-[30rem]">
             <p class="reveal eyebrow text-[#9FE8DC] before:bg-[#9FE8DC]" data-reveal-delay="0">
               DVA-contracted Community Nursing provider
             </p>
@@ -157,7 +158,7 @@
               <span class="text-[#9FE8DC]">in the comfort of home.</span>
             </h1>
 
-            <p class="reveal lead mt-5 max-w-xl text-white/95" data-reveal-delay="180">
+            <p class="reveal lead mt-5 max-w-xl text-white/95 xl:max-w-[26rem]" data-reveal-delay="180">
               Procare Nursing brings registered nurses to veterans across Greater Sydney, for
               wound care, medication support, and clinically required personal care. Not sure
               if you're eligible? Just call. We'll help you work it out.
