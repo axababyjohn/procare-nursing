@@ -19,8 +19,8 @@
   --page: 255 255 255;
   --tint: 238 248 246;
   --surface: 255 255 255;
-  --band: 11 47 44;
-  --footer: 10 31 30;
+  --band: 17 94 89;
+  --footer: 17 94 89;
   --line: 220 233 231;
   --fg: 16 33 31;
   --fg-body: 63 87 85;
@@ -39,7 +39,7 @@
   --tint: 15 36 35;
   --surface: 18 42 41;
   --band: 14 58 54;
-  --footer: 6 20 19;
+  --footer: 14 58 54;
   --line: 30 61 59;
   --fg: 230 244 242;
   --fg-body: 197 221 217;
@@ -133,6 +133,35 @@
   /* Dark surfaces: headings inherit the surface's text colour. */
   .on-dark :is(h1, h2, h3, h4) {
     color: inherit;
+  }
+  /* Brand-green buttons vanish on the green band, so primary buttons flip to white there. */
+  .on-dark .btn-primary {
+    background-color: #fff;
+    color: #115e59;
+  }
+  .on-dark .btn-phone {
+    background-color: #fff;
+    color: #115e59;
+  }
+  .on-dark .btn-primary:hover {
+    background-color: #d9f1ee;
+  }
+  /* Trust strip under the hero: soft mint card. Local --line tints the dividers/border. */
+  .trust-strip {
+    --line: 178 218 208;
+    background-image: linear-gradient(135deg, rgb(222 242 236), rgb(240 250 246));
+    background-color: rgb(231 246 241);
+  }
+  .dark .trust-strip {
+    --line: 44 92 86;
+    background-image: linear-gradient(135deg, rgb(22 62 58), rgb(17 50 47));
+    background-color: rgb(19 56 52);
+  }
+  .trust-strip .icon-badge-soft {
+    background-color: #fff;
+  }
+  .dark .trust-strip .icon-badge-soft {
+    background-color: rgb(11 29 28);
   }
   .on-dark :focus-visible {
     outline-color: #5eead4;
