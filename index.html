@@ -325,25 +325,24 @@
       </section>
 
       <!-- ============================ COVERAGE ============================ -->
-      <section id="coverage" class="bg-tint" aria-labelledby="coverage-heading">
-        <div class="container-x section-y grid items-start gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-14">
+      <section id="coverage" class="relative isolate overflow-hidden bg-tint" aria-labelledby="coverage-heading">
+        <img src="./assets/img/photos/sydney.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="1500" height="525" class="absolute inset-0 -z-20 h-full w-full object-cover object-[center_60%]" />
+        <div class="absolute inset-0 -z-10 bg-white/85 dark:bg-slate-950/85 lg:bg-white/75 dark:lg:bg-slate-950/75" aria-hidden="true"></div>
+        <div class="container-x grid items-center gap-10 py-14 lg:grid-cols-2 lg:gap-14 lg:py-16">
           <div class="reveal">
             <h2 id="coverage-heading">Our coverage area</h2>
             <p class="lead mt-4">
               We bring nursing care to your home across three regions of Sydney.
             </p>
             <p class="mt-2 text-sm text-fg-body">
-              Hover a region (or tap on mobile) to see the suburbs and the care we provide there.
+              Hover a region (or tap on mobile) to see the suburbs we cover.
             </p>
             <p class="mt-4 text-sm text-fg-body">
               Not sure if your suburb is covered? Call us and we'll let you know.
             </p>
-            <div class="mt-8 overflow-hidden rounded-3xl">
-              <img src="./assets/img/photos/sydney.jpg" alt="Sydney Harbour, representing our Greater Sydney coverage area" loading="lazy" width="1500" height="525" class="aspect-[16/9] w-full object-cover object-bottom lg:aspect-[4/3] dark:brightness-90" />
-            </div>
           </div>
 
-          <div class="reveal card-static p-5 sm:p-7" data-reveal-delay="90">
+          <div class="reveal card-static p-5 shadow-lg backdrop-blur-sm sm:p-7" data-reveal-delay="90">
             <div data-regions>
               <!-- No-JS fallback; replaced by the interactive regions. -->
               <ul class="space-y-2 text-fg-body">
@@ -659,7 +658,7 @@
 
       <!-- ========================== CALLBACK FORM ========================== -->
       <section id="callback" class="bg-tint" aria-labelledby="callback-heading">
-        <div class="container-x section-y grid items-start gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-14">
+        <div class="container-x grid items-center gap-10 py-14 lg:grid-cols-2 lg:gap-14 lg:py-16">
           <!-- Intro + reassurance -->
           <div class="reveal">
             <h2 id="callback-heading">Request a callback</h2>
