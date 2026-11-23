@@ -91,6 +91,21 @@ export const SITE = {
     specialist: { label: 'Specialist care', detail: 'Specialist nursing services' },
   },
 
+  /* ---- What the program includes (drops down under each service) ---
+   * Shown when a visitor points at, taps, or tabs to Clinical care or
+   * Personal care in the Coverage regions. Both services show this list.
+   * Leave items empty ([]) to turn the drop-down off.
+   * ----------------------------------------------------------------- */
+  programIncludes: {
+    heading: 'Within the program, when clinically required',
+    items: [
+      'Nursing care, such as wound care and medication administration',
+      'Personal care, such as showering, hygiene and continence care',
+      "Face-to-face care in the client's home",
+      'Coordinated services alongside other providers',
+    ],
+  },
+
   /* ---- Official DVA links (open in a new tab) ---------------------
    * Verify both URLs against https://dva.gov.au before launch.
    * ----------------------------------------------------------------- */

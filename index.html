@@ -825,22 +825,6 @@
                 <p id="cb-suburb-error" class="mt-1 hidden text-sm text-red-600 dark:text-red-400"></p>
               </div>
 
-              <fieldset aria-describedby="cb-whofor-error" class="sm:col-span-2">
-                <legend class="font-semibold">Who is this for? <span class="text-red-600" aria-hidden="true">*</span></legend>
-                <div class="mt-2 space-y-2">
-                  <label class="flex items-center gap-3 rounded-xl border border-sand-200 px-4 py-2.5 dark:border-night-800">
-                    <input type="radio" name="who_for" value="Myself" required class="h-4 w-4 accent-teal-600" /> Myself
-                  </label>
-                  <label class="flex items-center gap-3 rounded-xl border border-sand-200 px-4 py-2.5 dark:border-night-800">
-                    <input type="radio" name="who_for" value="A family member" class="h-4 w-4 accent-teal-600" /> A family member
-                  </label>
-                  <label class="flex items-center gap-3 rounded-xl border border-sand-200 px-4 py-2.5 dark:border-night-800">
-                    <input type="radio" name="who_for" value="Someone I care for" class="h-4 w-4 accent-teal-600" /> Someone I care for
-                  </label>
-                </div>
-                <p id="cb-whofor-error" class="mt-1 hidden text-sm text-red-600 dark:text-red-400"></p>
-              </fieldset>
-
               <div>
                 <label for="cb-time" class="block font-semibold">Safe time to call <span class="text-red-600" aria-hidden="true">*</span></label>
                 <div class="cb-field">
@@ -854,6 +838,20 @@
                   <svg viewBox="0 0 24 24" class="cb-icon" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                 </div>
                 <p id="cb-time-error" class="mt-1 hidden text-sm text-red-600 dark:text-red-400"></p>
+              </div>
+
+              <div class="grid gap-x-4 gap-y-2 sm:col-span-2 sm:grid-cols-2 sm:items-center">
+                <label for="cb-whofor" class="block font-semibold">Who is this for? <span class="text-red-600" aria-hidden="true">*</span></label>
+                <div class="cb-field">
+                  <select id="cb-whofor" name="who_for" required aria-describedby="cb-whofor-error" class="cb-control">
+                    <option value="">Choose one…</option>
+                    <option value="Myself">Myself</option>
+                    <option value="A family member">A family member</option>
+                    <option value="Someone I care for">Someone I care for</option>
+                  </select>
+                  <svg viewBox="0 0 24 24" class="cb-icon" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+                <p id="cb-whofor-error" class="hidden sm:col-start-2 text-sm text-red-600 dark:text-red-400"></p>
               </div>
 
               <div class="sm:col-span-2">
