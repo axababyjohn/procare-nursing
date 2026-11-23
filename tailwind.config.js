@@ -1,8 +1,12 @@
 /** @type {import('tailwindcss').Config} */
+// Semantic colour tokens come from CSS custom properties declared in src/input.css
+// (`:root` for light, `.dark` for dark), so a component uses one class (bg-surface)
+// instead of paired `dark:` utilities.
+const token = (name) => `rgb(var(--${name}) / <alpha-value>)`;
+
 module.exports = {
   // Dark mode via a `dark` class on <html> (see the no-flash script in index.html).
   darkMode: 'class',
-
   // Scan every file that can contain Tailwind classes so the production build is purged
   // down to only what we use (keeps dist/styles.css tiny for the Lighthouse budget).
   content: [
@@ -11,78 +15,64 @@ module.exports = {
     './404.html',
     './src/**/*.js',
   ],
-
   theme: {
     extend: {
-      // Fresh teal + mint palette (modern, calm, trustworthy).
-      // Tuned for >=4.5:1 text contrast in both themes.
       colors: {
+        page: token('page'),
+        tint: token('tint'),
+        surface: token('surface'),
+        band: token('band'),
+        footer: token('footer'),
+        line: token('line'),
+        fg: { DEFAULT: token('fg'), body: token('fg-body') },
+        muted: token('muted'),
+        brand: {
+          DEFAULT: token('brand'),
+          strong: token('brand-strong'),
+          soft: token('brand-soft'),
+        },
+        'on-brand': token('on-brand'),
+        'field-line': token('field-line'),
+        danger: { DEFAULT: token('danger'), soft: token('danger-soft') },
+        wa: '#097C3E',
+        // Text on the dark band / footer surfaces (same in both themes).
+        'band-muted': '#B7D3CF',
+        'band-fg': '#E6F4F2',
+        'band-accent': '#5EEAD4',
         teal: {
-          300: '#2DD4BF', // dark-mode accents / primary (dark)
-          400: '#14B8A6', // bright accent (decorative art only — fails text contrast)
-          500: '#0B8276', // gradient end for buttons (AA-safe with white text)
-          600: '#0F766E', // primary actions / links (light)
-          700: '#115E59', // hover / pressed, in-text links
+          50: '#F0FAF8',
+          100: '#D9F1EE',
+          200: '#A7E3DB',
+          300: '#2DD4BF',
+          400: '#14B8A6',
+          500: '#0B8276',
+          600: '#0F766E',
+          700: '#115E59',
         },
-        // "sand" keys are retained as names but now hold the mint scale, so
-        // existing utility classes across the markup keep working.
-        sand: {
-          50: '#F4FAF9', // light page background (mint-tinted)
-          100: '#FFFFFF', // card surfaces (light) — crisp white
-          200: '#D9F1EE', // soft mint: section bands, borders, chips
-        },
-        ink: {
-          700: '#4B6A68', // muted body text (light)
-          900: '#12302F', // body text (light)
-        },
-        night: {
-          800: '#122A29', // card surfaces (dark)
-          900: '#0B1D1C', // dark page background
-        },
-        cloud: {
-          50: '#E6F4F2', // body text (dark)
-          200: '#9BBDB9', // muted body text (dark)
-        },
+        // Legacy aliases: src/main.js emits `text-ink-900 dark:text-cloud-50`.
+        ink: { 700: '#3F5755', 900: '#10211F' },
+        cloud: { 50: '#E6F4F2', 200: '#9BBDB9' },
       },
-
       // Fraunces for headings, Inter for body/UI. Font files are self-hosted and preloaded.
       fontFamily: {
         display: ['Fraunces', 'Georgia', 'serif'],
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
-
-      // 18px base body size per the design direction.
+      // 17px base body size (audience skews older).
       fontSize: {
-        base: ['1.125rem', { lineHeight: '1.65' }],
+        base: ['1.0625rem', { lineHeight: '1.65' }],
       },
-
       borderRadius: {
-        '2xl': '1.25rem',
+        btn: '10px',
+        '2xl': '1rem',
         '3xl': '1.75rem',
       },
-
       boxShadow: {
-        soft: '0 10px 30px -10px rgba(15, 118, 110, 0.18)',
-        'soft-lg': '0 18px 44px -14px rgba(15, 118, 110, 0.30)',
-      },
-
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-18px)' },
-        },
-        'fade-up': {
-          '0%': { opacity: '0', transform: 'translateY(16px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-      },
-
-      animation: {
-        float: 'float 16s ease-in-out infinite',
-        'float-slow': 'float 20s ease-in-out infinite reverse',
+        card: '0 1px 2px rgb(16 33 31 / .05), 0 10px 28px -14px rgb(16 33 31 / .16)',
+        'card-hover': '0 1px 2px rgb(16 33 31 / .06), 0 18px 40px -16px rgb(16 33 31 / .24)',
+        float: '0 18px 40px -12px rgb(16 33 31 / .28)',
       },
     },
   },
-
   plugins: [],
 };
