@@ -17,7 +17,7 @@
   --dur-reveal: 900ms;
   --dur-loop: 3s;
   --page: 255 255 255;
-  --tint: 226 242 238;
+  --tint: 212 236 229;
   --surface: 255 255 255;
   --band: 17 94 89;
   --footer: 17 94 89;
@@ -148,9 +148,9 @@
   }
   /* Trust strip under the hero: soft mint card. Local --line tints the dividers/border. */
   .trust-strip {
-    --line: 160 206 194;
-    background-image: linear-gradient(135deg, rgb(206 235 226), rgb(226 244 238));
-    background-color: rgb(216 240 232);
+    --line: 140 194 180;
+    background-image: linear-gradient(135deg, rgb(188 226 214), rgb(210 237 228));
+    background-color: rgb(198 231 220);
   }
   .dark .trust-strip {
     --line: 44 92 86;
@@ -302,9 +302,9 @@
 
   /* ---- FAQ accordion (<details>, animated by initFaq in main.js) ---- */
   .faq {
-    --faq-bg: 216 240 232;
-    --faq-bg-open: 198 230 220;
-    --faq-line: 160 206 194;
+    --faq-bg: 198 231 220;
+    --faq-bg-open: 180 221 208;
+    --faq-line: 140 194 180;
     @apply rounded-xl border;
     background-color: rgb(var(--faq-bg));
     border-color: rgb(var(--faq-line));
