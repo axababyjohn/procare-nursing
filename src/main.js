@@ -285,6 +285,14 @@ function initReveal() {
         const delay = explicit != null ? parseInt(explicit, 10) : Math.min(i * 120, 600);
         entry.target.style.transitionDelay = delay + 'ms';
         entry.target.classList.add('is-visible');
+        // Drop the stagger delay once revealed so hover transitions respond at once.
+        entry.target.addEventListener(
+          'transitionend',
+          () => {
+            entry.target.style.transitionDelay = '';
+          },
+          { once: true }
+        );
         obs.unobserve(entry.target);
       });
     },

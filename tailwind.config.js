@@ -7,6 +7,8 @@ const token = (name) => `rgb(var(--${name}) / <alpha-value>)`;
 module.exports = {
   // Dark mode via a `dark` class on <html> (see the no-flash script in index.html).
   darkMode: 'class',
+  // Wrap hover: variants in @media (hover: hover) so touch devices don't get stuck states.
+  future: { hoverOnlyWhenSupported: true },
   // Scan every file that can contain Tailwind classes so the production build is purged
   // down to only what we use (keeps dist/styles.css tiny for the Lighthouse budget).
   content: [
@@ -62,6 +64,9 @@ module.exports = {
       fontSize: {
         base: ['1.0625rem', { lineHeight: '1.65' }],
       },
+      // Calm defaults for every transition-* utility (tokens live in input.css :root).
+      transitionDuration: { DEFAULT: 'var(--dur-hover)', zoom: 'var(--dur-zoom)' },
+      transitionTimingFunction: { DEFAULT: 'var(--ease-calm)' },
       borderRadius: {
         btn: '10px',
         '2xl': '1rem',
