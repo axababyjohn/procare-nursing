@@ -390,63 +390,14 @@
   .region-chip {
     @apply rounded-full border border-line bg-surface px-3.5 py-1.5 text-sm font-medium text-fg;
   }
-  .region-service {
-    @apply flex items-start gap-3 rounded-xl border border-line bg-surface p-3 text-fg-body;
-  }
-  .region-service-toggle {
-    @apply relative block w-full rounded-lg pr-7 text-left;
-    cursor: pointer;
-  }
-  .region-service-chev {
-    @apply absolute right-0 top-0.5 h-5 w-5 text-brand;
-    transition: transform 0.4s ease;
-  }
-  .region-service-chev svg {
-    @apply h-full w-full;
-  }
-  .region-service[data-open='true'] .region-service-chev {
-    transform: rotate(180deg);
-  }
-  .region-more {
-    display: grid;
-    grid-template-rows: 0fr;
-    opacity: 0;
-    visibility: hidden;
-    transition: grid-template-rows 0.5s ease, opacity 0.4s ease, visibility 0s linear 0.5s;
-  }
-  .region-service[data-open='true'] .region-more {
-    grid-template-rows: 1fr;
-    opacity: 1;
-    visibility: visible;
-    transition: grid-template-rows 0.5s ease, opacity 0.5s ease 0.05s, visibility 0s linear 0s;
-  }
-  .region-more-inner {
-    @apply min-h-0 overflow-hidden;
-  }
-  .region-more-head {
-    @apply mt-3 border-t border-line pt-3 text-sm font-semibold text-fg;
-  }
-  .region-more-list {
-    @apply mt-2 space-y-1.5 text-sm;
-  }
-  .region-more-list li {
-    @apply relative pl-4;
-  }
-  .region-more-list li::before {
-    content: '';
-    @apply absolute left-0 top-[0.55em] h-1.5 w-1.5 rounded-full bg-brand;
-  }
-
-  /* Suburbs and services drift in one after another once the panel is up
-     (last item finishes at .2s + 7 x 60ms + .5s = 1.12s). */
-  .region-chip,
-  .region-service {
+  /* Suburbs drift in one after another once the panel is up
+     (delay .2s + n x 60ms). */
+  .region-chip {
     opacity: 0;
     transform: translateY(8px);
     transition: opacity 0.5s ease, transform 0.5s ease;
   }
-  .region-panel[data-active='true'] .region-chip,
-  .region-panel[data-active='true'] .region-service {
+  .region-panel[data-active='true'] .region-chip {
     opacity: 1;
     transform: translateY(0);
     transition-delay: calc(0.2s + var(--i, 0) * 60ms);
