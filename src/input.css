@@ -5,8 +5,57 @@
 @tailwind utilities;
 
 /* ------------------------------------------------------------------ *
- * Reduced motion: disable all non-essential motion (hero float,
- * scroll-reveal transitions, animations) for visitors who ask for it.
+ * Colour tokens (space-separated RGB channels, used by tailwind.config.js
+ * as rgb(var(--x) / <alpha-value>)). Dark values live in one place.
+ * ------------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+  /* Motion tokens: one calm timing for every hover/focus/reveal transition. */
+  --ease-calm: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-hover: 600ms;
+  --dur-zoom: 1100ms;
+  --dur-reveal: 900ms;
+  --dur-loop: 3s;
+  --page: 255 255 255;
+  --tint: 212 236 229;
+  --surface: 255 255 255;
+  --band: 17 94 89;
+  --footer: 17 94 89;
+  --line: 220 233 231;
+  --fg: 16 33 31;
+  --fg-body: 63 87 85;
+  --muted: 88 114 112;
+  --brand: 15 118 110;
+  --brand-strong: 17 94 89;
+  --brand-soft: 217 241 238;
+  --on-brand: 255 255 255;
+  --field-line: 124 147 145;
+  --danger: 185 28 28;
+  --danger-soft: 254 242 242;
+}
+.dark {
+  color-scheme: dark;
+  --page: 11 29 28;
+  --tint: 15 36 35;
+  --surface: 18 42 41;
+  --band: 14 58 54;
+  --footer: 14 58 54;
+  --line: 30 61 59;
+  --fg: 230 244 242;
+  --fg-body: 197 221 217;
+  --muted: 155 189 185;
+  --brand: 45 212 191;
+  --brand-strong: 94 234 212;
+  --brand-soft: 20 64 60;
+  --on-brand: 11 29 28;
+  --field-line: 95 133 129;
+  --danger: 252 165 165;
+  --danger-soft: 42 21 22;
+}
+
+/* ------------------------------------------------------------------ *
+ * Reduced motion: disable all non-essential motion for visitors who
+ * ask for it. Scroll-reveal content is forced visible.
  * ------------------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -19,8 +68,6 @@
     transition-delay: 0s !important;
     scroll-behavior: auto !important;
   }
-
-  /* Scroll-reveal elements must appear immediately, never hidden. */
   .reveal,
   .reveal-left,
   .reveal-right {
@@ -29,35 +76,21 @@
   }
 }
 
-/* ------------------------------------------------------------------ *
- * Standard modern type scale. One consistent set of heading sizes,
- * weights, tracking and line-heights used across the whole site.
- * ------------------------------------------------------------------ */
 @layer base {
   html {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    /* Jump links (#refer, #callback ...) leave room for the sticky header so
-       the heading they land on is never hidden underneath it. */
-    scroll-padding-top: 5rem;
-  }
-  /* This panel has no section padding above its heading, and it also fades up
-     ~2rem as it appears, so give its jump link a little extra room. */
-  #getting-care {
-    scroll-margin-top: 1.5rem;
+    /* Jump links leave room for the sticky header. */
+    scroll-padding-top: 5.5rem;
   }
   body {
     letter-spacing: -0.003em;
     /* Never allow horizontal scroll from a stray wide element. */
     overflow-x: hidden;
   }
-  /* Cards that slide in from the side (.reveal-left / .reveal-right) start
-     off-screen. `clip` hides that overflow without creating a scroll area,
-     so phones don't get a widened, side-scrolling page. */
   main {
     overflow-x: clip;
   }
-  /* Media never overflows its container on small screens. */
   img,
   video {
     max-width: 100%;
@@ -66,194 +99,295 @@
   h2,
   h3,
   h4 {
-    @apply font-display font-semibold tracking-tight text-ink-900 dark:text-cloud-50;
+    @apply font-display font-medium text-fg;
+    letter-spacing: -0.02em;
     text-wrap: balance;
   }
-  /* Fluid type: scales smoothly across phone -> tablet -> desktop ->
-     large monitors using clamp(), so headings fit any screen size. */
   h1 {
-    font-size: clamp(2.1rem, 1.3rem + 3.6vw, 3.5rem);
-    line-height: 1.1;
+    font-size: clamp(2.25rem, 1.4rem + 3.8vw, 4rem);
+    line-height: 1.08;
   }
   h2 {
-    font-size: clamp(1.7rem, 1.2rem + 2.2vw, 2.5rem);
+    font-size: clamp(1.875rem, 1.3rem + 2vw, 2.75rem);
     line-height: 1.15;
   }
   h3 {
-    font-size: clamp(1.15rem, 1rem + 0.7vw, 1.375rem);
-    line-height: 1.35;
+    font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+    line-height: 1.3;
   }
   h4 {
-    @apply text-lg leading-snug;
+    font-size: 1.125rem;
+    line-height: 1.35;
   }
   p {
     text-wrap: pretty;
   }
+  /* One focus rule for every control: a real outline (survives forced-colors). */
+  :focus-visible {
+    outline: 3px solid rgb(var(--brand));
+    outline-offset: 2px;
+  }
 }
 
 @layer components {
-  /* Callback form fields: rounded box, icon on the right ---------- */
+  /* Dark surfaces: headings inherit the surface's text colour. */
+  .on-dark :is(h1, h2, h3, h4) {
+    color: inherit;
+  }
+  /* Brand-green buttons vanish on the green band, so primary buttons flip to white there. */
+  .on-dark .btn-primary {
+    background-color: #fff;
+    color: #115e59;
+  }
+  .on-dark .btn-phone {
+    background-color: #fff;
+    color: #115e59;
+  }
+  .on-dark .btn-primary:hover {
+    background-color: #d9f1ee;
+  }
+  /* Trust strip under the hero: soft mint card. Local --line tints the dividers/border. */
+  .trust-strip {
+    --line: 140 194 180;
+    background-image: linear-gradient(135deg, rgb(188 226 214), rgb(210 237 228));
+    background-color: rgb(198 231 220);
+  }
+  .dark .trust-strip {
+    --line: 44 92 86;
+    background-image: linear-gradient(135deg, rgb(22 62 58), rgb(17 50 47));
+    background-color: rgb(19 56 52);
+  }
+  .trust-strip .icon-badge-soft {
+    background-color: #fff;
+  }
+  .dark .trust-strip .icon-badge-soft {
+    background-color: rgb(11 29 28);
+  }
+  .on-dark :focus-visible {
+    outline-color: #5eead4;
+  }
+
+  /* ---- Layout ------------------------------------------------------ */
+  .container-x {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 75rem;
+    padding-inline: clamp(1rem, 0.5rem + 2vw, 2rem);
+  }
+  .section-y {
+    padding-block: 3.5rem;
+  }
+  @media (min-width: 768px) {
+    .section-y {
+      padding-block: 4rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .section-y {
+      padding-block: 4.75rem;
+    }
+  }
+
+  /* ---- Type helpers ------------------------------------------------ */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 font-sans text-[0.8125rem] font-semibold uppercase text-brand;
+    letter-spacing: 0.14em;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply h-0.5 w-6 shrink-0 bg-brand;
+  }
+  .lead {
+    @apply text-lg leading-relaxed text-fg-body sm:text-[1.125rem] lg:text-xl;
+  }
+  .footer-label {
+    @apply font-display text-lg font-medium tracking-tight text-white;
+  }
+
+  /* ---- Buttons ------------------------------------------------------ */
+  .btn {
+    @apply inline-flex min-h-[48px] items-center justify-center gap-2 rounded-btn px-6 py-3
+           text-[0.9375rem] font-semibold leading-none no-underline transition-colors;
+  }
+  .btn-primary {
+    @apply btn bg-brand text-on-brand hover:bg-brand-strong;
+  }
+  .btn-secondary {
+    @apply btn border-[1.5px] border-brand bg-transparent text-brand hover:bg-brand-soft;
+  }
+  .btn-phone {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-btn bg-brand px-4 py-2
+           text-sm font-semibold leading-none text-on-brand no-underline transition-colors
+           hover:bg-brand-strong;
+  }
+  .btn-phone svg {
+    @apply h-4 w-4 shrink-0;
+  }
+  .btn-whatsapp {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-btn bg-wa px-4 py-2
+           text-sm font-semibold leading-none text-white no-underline transition-colors
+           hover:bg-[#0B6A36];
+  }
+  .btn-whatsapp svg {
+    @apply h-4 w-4 shrink-0;
+  }
+  .btn-whatsapp.btn-lg {
+    @apply min-h-[48px] px-6 py-3 text-[0.9375rem];
+  }
+  .btn-whatsapp.btn-lg svg {
+    @apply h-5 w-5;
+  }
+
+  /* ---- Cards and badges -------------------------------------------- */
+  .card-static {
+    @apply rounded-2xl border border-line bg-surface p-6 shadow-card sm:p-7;
+  }
+  .icon-badge {
+    @apply grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand text-on-brand;
+  }
+  .icon-badge svg {
+    @apply h-5 w-5;
+  }
+  .icon-badge-soft {
+    @apply grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand-soft text-brand;
+  }
+  .icon-badge-soft svg {
+    @apply h-5 w-5;
+  }
+
+  /* ---- Header nav links -------------------------------------------- */
+  .nav-link {
+    @apply block min-h-[48px] py-3 text-base font-semibold text-fg transition-colors hover:text-brand
+           xl:min-h-0 xl:py-2 xl:text-[0.8125rem] xl:uppercase;
+  }
+  @media (min-width: 1280px) {
+    .nav-link {
+      letter-spacing: 0.06em;
+      text-underline-offset: 8px;
+      text-decoration-thickness: 2px;
+    }
+    .nav-link:hover {
+      text-decoration-line: underline;
+    }
+  }
+
+  /* ---- Callback form ----------------------------------------------- */
+  .cb-label {
+    @apply block text-[0.8125rem] font-bold uppercase text-fg;
+    letter-spacing: 0.06em;
+  }
   .cb-field {
     @apply relative mt-2;
   }
   .cb-control {
-    @apply h-14 w-full rounded-lg border border-ink-700/40 bg-white pl-6 pr-14 text-ink-900
-           placeholder:text-ink-700/70 focus-visible:border-ink-900 focus-visible:outline-none
-           focus-visible:ring-2 focus-visible:ring-teal-600/40
-           dark:border-cloud-200/40 dark:bg-night-900 dark:text-cloud-50
-           dark:placeholder:text-cloud-200/70 dark:focus-visible:border-cloud-50;
+    @apply h-14 w-full rounded-xl border border-field-line bg-surface pl-5 pr-12 text-base text-fg
+           placeholder:text-muted transition-colors hover:border-fg/50 focus-visible:border-brand;
   }
   textarea.cb-control {
-    @apply h-auto py-4;
+    @apply h-auto py-4 pr-5;
   }
   select.cb-control {
     @apply appearance-none;
   }
+  .cb-control[aria-invalid='true'] {
+    @apply border-danger;
+    outline: 1px solid rgb(var(--danger));
+  }
+  .cb-control[aria-invalid='true']:focus-visible {
+    outline: 3px solid rgb(var(--brand));
+  }
   .cb-icon {
-    @apply pointer-events-none absolute right-5 top-1/2 h-5 w-5 -translate-y-1/2 text-ink-700/70
-           dark:text-cloud-200/70;
-  }
-  /* Pill buttons -------------------------------------------------- */
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3
-           font-sans font-semibold leading-none transition-all duration-500 ease-out
-           focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-teal-400/50;
-  }
-  /* Gradient fill + gentle lift and glow on hover. */
-  .btn-primary {
-    @apply btn text-white shadow-soft hover:-translate-y-0.5 hover:shadow-soft-lg
-           dark:text-night-900;
-    background-image: linear-gradient(135deg, theme('colors.teal.600'), theme('colors.teal.500'));
-  }
-  /* Dark mode uses bright accents with dark (night) text, which has ample
-     contrast across the whole gradient. */
-  .dark .btn-primary {
-    background-image: linear-gradient(135deg, theme('colors.teal.300'), theme('colors.teal.400'));
-  }
-  /* Outline pill that fills softly on hover. */
-  .btn-secondary {
-    @apply btn border-2 border-teal-600 bg-transparent text-teal-700
-           hover:-translate-y-0.5 hover:bg-sand-200/60
-           dark:border-teal-300 dark:text-teal-300 dark:hover:bg-night-800;
-  }
-  /* Compact phone pill (gradient fill, no underline, slow hover highlight).
-     Used wherever the phone number appears inline. */
-  .btn-phone {
-    @apply inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold
-           leading-none text-white no-underline shadow-soft transition-all duration-500 ease-out
-           hover:-translate-y-0.5 hover:shadow-soft-lg
-           focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-teal-400/50
-           dark:text-night-900;
-    background-image: linear-gradient(135deg, theme('colors.teal.600'), theme('colors.teal.500'));
-  }
-  .dark .btn-phone {
-    background-image: linear-gradient(135deg, theme('colors.teal.300'), theme('colors.teal.400'));
-  }
-  .btn-phone svg {
-    @apply h-4 w-4;
-  }
-  /* WhatsApp pill (deep WhatsApp green, AA-safe with white text). */
-  .btn-whatsapp {
-    @apply inline-flex items-center gap-2 rounded-full bg-[#097C3E] px-4 py-2 text-sm font-semibold
-           leading-none text-white no-underline shadow-soft transition-all duration-500 ease-out
-           hover:-translate-y-0.5 hover:bg-[#0B6A36] hover:shadow-soft-lg
-           focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#097C3E]/40;
-  }
-  .btn-whatsapp svg {
-    @apply h-4 w-4;
+    @apply pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted;
   }
 
-  /* Cards --------------------------------------------------------- */
-  /* Every card lifts and brightens its shadow on hover. */
-  .card {
-    @apply rounded-2xl border border-sand-200 bg-sand-100 p-7 shadow-soft transition-all duration-500 ease-out
-           hover:-translate-y-1 hover:border-teal-600/30 hover:shadow-soft-lg
-           dark:border-night-800 dark:bg-night-800 dark:hover:border-teal-300/30;
+  /* ---- FAQ accordion (<details>, animated by initFaq in main.js) ---- */
+  .faq {
+    --faq-bg: 198 231 220;
+    --faq-bg-open: 180 221 208;
+    --faq-line: 140 194 180;
+    @apply rounded-xl border;
+    background-color: rgb(var(--faq-bg));
+    border-color: rgb(var(--faq-line));
+    transition: background-color 600ms ease, border-color 600ms ease;
   }
-  /* Stronger lift for feature cards (photo cards opt in). */
-  .card-hover {
-    @apply hover:-translate-y-1.5 hover:shadow-soft-lg;
+  .dark .faq {
+    --faq-bg: 19 56 52;
+    --faq-bg-open: 24 70 65;
+    --faq-line: 44 92 86;
   }
-
-  /* Soft tinted cards (teal / blue / amber) so blocks don't read as plain
-     white. Colours checked for >=4.5:1 text contrast in both themes. */
-  .card-tint-teal {
-    background-color: #cdebe5;
-    border-color: rgb(15 118 110 / 0.2);
+  .faq[data-open='true'] {
+    background-color: rgb(var(--faq-bg-open));
   }
-  .card-tint-blue {
-    background-color: #d6e6f8;
-    border-color: rgb(29 78 216 / 0.16);
+  .faq summary {
+    @apply flex min-h-[56px] cursor-pointer list-none items-center justify-between gap-4 rounded-xl px-5 py-4 font-semibold text-fg;
   }
-  .card-tint-amber {
-    background-color: #fbebc4;
-    border-color: rgb(180 83 9 / 0.22);
+  .faq summary::-webkit-details-marker {
+    display: none;
   }
-  .card-tint-green {
-    background-color: #d4efdc;
-    border-color: rgb(22 101 52 / 0.22);
+  .faq summary h3 {
+    color: inherit;
   }
-  .dark .card-tint-green {
-    background-color: #143826;
-    border-color: rgb(74 222 128 / 0.22);
+  /* Open question: heading row in the standard band green, answer stays mint. */
+  .faq summary {
+    transition: background-color 600ms ease, color 600ms ease, border-radius 600ms ease;
   }
-
-  /* Oval card: a strongly rounded, centred card. The padding is sized to the
-     corner curve so text and buttons never touch the rounded corners. The
-     normal card hover lift, shadow and slide-in animations still apply. */
-  .card-oval {
-    border-radius: 6rem;
-    padding: 2.75rem 1.5rem;
-    text-align: center;
-    /* Centre the content vertically so shorter cards don't leave a gap at
-       the bottom of the oval. */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .faq[data-open='true'] summary {
+    @apply rounded-b-none bg-band text-white;
   }
-  .card-oval .oval-row {
-    justify-content: center;
+  .faq[data-open='true'] .faq-icon {
+    @apply text-white;
   }
-  .dark .card-tint-teal {
-    background-color: #12403c;
-    border-color: rgb(45 212 191 / 0.22);
+  .faq-icon {
+    @apply relative block h-5 w-5 shrink-0 text-brand;
   }
-  .dark .card-tint-blue {
-    background-color: #14304d;
-    border-color: rgb(96 165 250 / 0.22);
+  .faq-icon::before,
+  .faq-icon::after {
+    content: '';
+    @apply absolute left-0 top-1/2 h-0.5 w-5 -translate-y-1/2 rounded bg-current;
+    transition: transform 600ms ease;
   }
-  .dark .card-tint-amber {
-    background-color: #3d3114;
-    border-color: rgb(251 191 36 / 0.22);
+  .faq-icon::after {
+    transform: translateY(-50%) rotate(90deg);
   }
-
-  /* "How it works" interactive step tabs ------------------------- */
-  /* Inactive tabs are faded; hover lifts them part-way; the active
-     tab (aria-selected) is fully highlighted. */
+  .faq[data-open='true'] .faq-icon::after {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  .faq-answer {
+    @apply overflow-hidden px-5 pb-5 pt-1 text-fg-body;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .faq,
+    .faq summary,
+    .faq-icon::before,
+    .faq-icon::after {
+      transition: none;
+    }
+  }
+  /* ---- How it works: numbered step tabs ----------------------------- */
   .step-tab {
-    @apply flex items-center gap-3 rounded-2xl border border-sand-200 bg-sand-100 p-4 text-ink-900
-           opacity-60 transition-all duration-500 ease-out
-           hover:-translate-y-0.5 hover:opacity-100 hover:shadow-soft
-           focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-teal-400/50
-           dark:border-night-800 dark:bg-night-800 dark:text-cloud-50;
+    @apply flex min-h-[72px] items-center gap-3 rounded-2xl border border-line bg-surface p-5 text-left text-fg
+           shadow-card transition-colors hover:border-brand/40;
+  }
+  .step-num {
+    @apply font-display text-[2rem] font-medium leading-none text-brand;
   }
   .step-tab[aria-selected='true'] {
-    @apply border-transparent text-white opacity-100 shadow-soft-lg dark:text-night-900;
-    background-image: linear-gradient(135deg, theme('colors.teal.600'), theme('colors.teal.500'));
+    @apply border-transparent bg-band text-white;
   }
-  .dark .step-tab[aria-selected='true'] {
-    background-image: linear-gradient(135deg, theme('colors.teal.300'), theme('colors.teal.400'));
+  .step-tab[aria-selected='true'] .step-num {
+    color: #5eead4;
   }
   .step-tab-num {
-    @apply grid h-10 w-10 shrink-0 place-items-center rounded-full bg-teal-600/10 text-teal-700
-           dark:bg-teal-300/15 dark:text-teal-300;
+    @apply ml-auto grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand-soft text-brand;
   }
   .step-tab[aria-selected='true'] .step-tab-num {
-    @apply bg-white/25 text-white dark:bg-night-900/20 dark:text-night-900;
+    @apply bg-white/15 text-white;
   }
-  /* Step detail panel fades/slides in gently when shown. */
+  .step-panel {
+    @apply rounded-2xl border border-line border-l-4 border-l-brand bg-surface p-6 shadow-card sm:p-7;
+  }
   [role='tabpanel']:not(.hidden) {
-    animation: step-fade 0.6s ease-out;
+    animation: step-fade 0.7s var(--ease-calm);
   }
   @keyframes step-fade {
     from {
@@ -266,597 +400,76 @@
     }
   }
 
-  /* "Getting care" hover-reveal Q&A ----------------------------- */
-  .qa {
-    @apply rounded-2xl border border-sand-200 bg-sand-100 px-5 py-4 transition-all duration-500 ease-out
-           hover:border-teal-600/30 hover:shadow-soft
-           focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-teal-400/40
-           dark:border-night-800 dark:bg-night-800 dark:hover:border-teal-300/30;
-  }
-  .qa-q {
-    @apply flex items-center justify-between gap-3 font-display text-base font-semibold text-ink-900 dark:text-cloud-50;
-    cursor: default;
-  }
-  .qa-chevron {
-    @apply h-4 w-4 shrink-0 text-teal-700 transition-transform duration-700 ease-out dark:text-teal-300;
-  }
-  /* Answer: collapsed (0fr) and transparent until hover/focus, then it
-     slowly expands and fades in. grid-rows transition gives smooth height. */
-  .qa-a {
-    display: grid;
-    grid-template-rows: 0fr;
-    opacity: 0;
-    transition: grid-template-rows 0.9s ease, opacity 0.9s ease, margin-top 0.9s ease;
-    margin-top: 0;
-  }
-  .qa-a-inner {
-    /* max-w keeps answers a comfortable line length on wide screens. */
-    @apply max-w-3xl overflow-hidden text-sm leading-relaxed text-ink-700 dark:text-cloud-200;
-  }
-  .qa:hover .qa-a,
-  .qa:focus-within .qa-a {
-    grid-template-rows: 1fr;
-    opacity: 1;
-    margin-top: 0.75rem;
-  }
-  .qa:hover .qa-chevron,
-  .qa:focus-within .qa-chevron {
-    @apply rotate-180;
-  }
-
-  /* Faded hero background photo as a CSS background (never an LCP image). */
-  .hero-bg {
-    background-image: url('../assets/img/photos/nurse-patient.jpg');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.24;
-    transform: scale(1.05);
-  }
-  .dark .hero-bg {
-    opacity: 0.16;
-  }
-
-  /* Reusable faded full-section photo background (CSS only, below the fold, never preloaded).
-     ::before = photo (set per modifier via --section-bg), ::after = light/dark readability wash. */
-  .section-bg {
-    position: relative;
-    overflow: hidden;
-    isolation: isolate;
-  }
-  .section-bg::before,
-  .section-bg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-  }
-  .section-bg::before {
-    background: var(--section-bg) center / cover no-repeat;
-    opacity: 0.22;
-  }
-  .dark .section-bg::before {
-    opacity: 0.14;
-  }
-  .section-bg::after {
-    background: linear-gradient(to bottom, rgb(255 255 255 / 0.62), rgb(255 255 255 / 0.42) 50%, rgb(255 255 255 / 0.62));
-  }
-  .dark .section-bg::after {
-    background: linear-gradient(to bottom, rgb(10 22 22 / 0.65), rgb(10 22 22 / 0.5) 50%, rgb(10 22 22 / 0.65));
-  }
-  .section-bg--harbour {
-    --section-bg: url('../assets/img/photos/sydney.jpg');
-  }
-
-  /* Hero radial glow background (mint bloom behind the headline). */
-  .hero-glow {
-    background-image:
-      radial-gradient(circle at 18% 20%, theme('colors.sand.200'), transparent 55%),
-      radial-gradient(circle at 85% 0%, theme('colors.teal.300' / 18%), transparent 45%);
-  }
-  .dark .hero-glow {
-    background-image:
-      radial-gradient(circle at 18% 20%, theme('colors.night.800'), transparent 55%),
-      radial-gradient(circle at 85% 0%, theme('colors.teal.400' / 12%), transparent 45%);
-  }
-
-  .hero-float-slow {
-    @apply animate-float-slow;
-    will-change: transform;
-  }
-
-  /* Photos sit clearly faded to blend with the calm palette, then brighten
-     on hover (pairs with the group-hover zoom) for a lively reveal. */
-  .photo-soft {
-    @apply opacity-[0.45] transition-all duration-[1600ms] ease-out;
-  }
-
-  /* ---- "Care we provide" cards: details appear on hover -------------
-     Photo + title are always visible. On hover / keyboard focus / tap a
-     coloured veil fades in over the photo and the details drift up. The
-     details live over the photo, so the card never changes size. */
-  .service-card {
-    @apply relative h-72 cursor-default overflow-hidden rounded-2xl border border-sand-200 bg-sand-100
-           shadow-soft transition-shadow duration-500 ease-out hover:shadow-soft-lg
-           focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-teal-400/50
-           dark:border-night-800 dark:bg-night-800;
-  }
-  .service-veil {
-    @apply pointer-events-none absolute inset-0 opacity-0;
-    transition: opacity 0.9s ease;
-  }
-  .service-detail {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.9s ease 0.2s, transform 0.9s ease 0.2s;
-  }
-  .service-card:hover .service-veil,
-  .service-card:focus-within .service-veil {
-    opacity: 1;
-  }
-  .service-card:hover .service-detail,
-  .service-card:focus-within .service-detail {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .dark .photo-soft {
-    @apply opacity-[0.35];
-  }
-  .group:hover .photo-soft {
-    @apply opacity-90;
-  }
-
-  /* ---- Refer a patient: front block + cards that drift behind it ----
-     Default (tablet, phone, reduced motion, no JS): a teal block with the
-     heading, then the three cards in a normal grid.
-     Large screens with motion allowed: the script adds .is-marquee. The cards
-     then enter from the right edge, travel left, slide BEHIND the front block
-     and vanish, looping forever. Cards are the real elements (no copies), each
-     phased by --i so they are evenly spaced. Pauses on hover, on keyboard focus
-     (the script drops back to the static layout). */
-  .refer-front {
-    @apply rounded-3xl p-7 shadow-soft sm:p-9;
-    margin-bottom: 1.5rem;
-    /* Translucent at rest so the harbour picture shows through; solid on hover / focus. */
-    --rf-ink: #0b2e2b;
-    position: relative;
-    isolation: isolate;
-    color: var(--rf-ink);
-    transition: opacity 1100ms ease-out, transform 1100ms ease-out, box-shadow 0.8s ease, color 0.8s ease;
-  }
-  .dark .refer-front {
-    --rf-ink: #fff;
-  }
-  .refer-front::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    border-radius: inherit;
-    background: linear-gradient(to bottom right, theme('colors.teal.700'), theme('colors.teal.600'));
-    opacity: 0.38;
-    transition: opacity 0.8s ease;
-  }
-  .refer-front:hover,
-  .refer-front:focus-within {
-    --rf-ink: #fff;
-    box-shadow: 0 24px 48px -16px rgb(0 0 0 / 0.38);
-  }
-  .refer-front:hover::before,
-  .refer-front:focus-within::before {
-    opacity: 1;
-  }
-  .refer-front h2 {
-    color: var(--rf-ink);
-    transition: color 0.8s ease;
-  }
-  .refer-stage.is-marquee .refer-front {
-    padding: 1.75rem;
-  }
-  .refer-stage.is-marquee .refer-front h2 {
-    font-size: 2.1rem;
-    white-space: nowrap;
-  }
-  .refer-front p {
-    margin-top: 0.75rem;
-    font-size: 1.125rem;
-    line-height: 1.6;
-    color: var(--rf-ink);
-    transition: color 0.8s ease;
-  }
-  /* Oval cards: translucent at rest, solid + lifted on hover / focus. */
-  .refer-cards > .card-oval {
-    background-color: rgb(212 239 220 / 0.55);
-    transition: all 0.8s ease;
-  }
-  .dark .refer-cards > .card-oval {
-    background-color: rgb(20 56 38 / 0.55);
-  }
-  .refer-cards > .card-oval:hover,
-  .refer-cards > .card-oval:focus-within {
-    background-color: #d4efdc;
-    box-shadow: 0 20px 40px -14px rgb(15 60 40 / 0.35);
-  }
-  .dark .refer-cards > .card-oval:hover,
-  .dark .refer-cards > .card-oval:focus-within {
-    background-color: #143826;
-  }
-  .refer-cards {
-    display: grid;
-    gap: 1.5rem;
-  }
-  @media (min-width: 1024px) {
-    .refer-cards {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-  .refer-stage.is-marquee {
-    display: grid;
-    overflow: hidden;
-    container-type: inline-size;
-    border-radius: 2rem;
-    background-color: rgb(217 241 238 / 0.45);
-    position: relative;
-    isolation: isolate;
-  }
-  .dark .refer-stage.is-marquee {
-    background-color: rgb(18 42 41 / 0.55);
-  }
-  .refer-stage.is-marquee .refer-front {
-    grid-area: 1 / 1;
-    z-index: 2; /* in front of the cards */
-    width: 19rem;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 2rem;
-    box-shadow: 18px 0 32px -14px rgb(0 0 0 / 0.12);
-    /* Cards drift behind this block; blur keeps their text from clashing with the heading. */
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-  }
-  .refer-stage.is-marquee .refer-front:hover,
-  .refer-stage.is-marquee .refer-front:focus-within {
-    box-shadow: 18px 0 32px -14px rgb(0 0 0 / 0.5);
-  }
-  .refer-stage.is-marquee .refer-cards {
-    display: contents; /* cards become direct grid items of the stage */
-  }
-  .refer-stage.is-marquee .refer-cards > * {
-    grid-area: 1 / 1; /* all share one cell, so each can travel the full width */
-    justify-self: start;
-    z-index: 1; /* behind the front block */
-    width: 19.5rem;
-    animation: refer-fly 30s linear infinite;
-    animation-delay: calc(var(--i, 0) * -10s);
-    will-change: transform;
-  }
-  .refer-stage.is-marquee:hover .refer-cards > * {
-    animation-play-state: paused;
-  }
-  @keyframes refer-fly {
-    from {
-      transform: translateX(100cqw); /* just off the right edge of the stage */
-    }
-    to {
-      /* one full ring of 3 cards at a 21rem pitch (19.5rem card + 1.5rem gap): the gap between cards never changes */
-      transform: translateX(calc(100cqw - 63rem));
-    }
-  }
-
-  /* ---- Refer row: moving Refer block (left, 75%) + static Availability (right, 25%) ----
-     Two independent columns on desktop; stacked on tablets and phones. */
-  .refer-row {
-    display: grid;
-    gap: 1.5rem;
-  }
-  .refer-avail {
-    @apply rounded-2xl p-6;
-    background-color: rgb(220 243 228 / 0.5); /* translucent mint at rest; solid on hover / focus */
-    border: 1px solid rgb(15 118 110 / 0.14);
-    display: flex;
-    flex-direction: column;
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
-    transition: background-color 0.8s ease, box-shadow 0.8s ease;
-  }
-  .dark .refer-avail {
-    background-color: rgb(20 56 38 / 0.5);
-    border-color: rgb(74 222 128 / 0.18);
-  }
-  .refer-avail:hover,
-  .refer-avail:focus-within {
-    background-color: rgb(220 243 228);
-    box-shadow: 0 20px 40px -14px rgb(15 60 40 / 0.35);
-  }
-  .dark .refer-avail:hover,
-  .dark .refer-avail:focus-within {
-    background-color: rgb(20 56 38);
-  }
-  /* Oval inner boxes: tight padding, centred, no wasted space. */
-  .avail-oval {
-    border-radius: 2.5rem;
-    padding: 1rem 1.25rem;
-    text-align: center;
-    background-color: rgb(255 255 255 / 0.55);
-    border-color: rgb(15 23 42 / 0.1);
-    box-shadow: 0 1px 2px rgb(15 23 42 / 0.06);
-    transition: all 0.8s ease;
-  }
-  .dark .avail-oval {
-    background-color: rgb(28 36 48 / 0.55);
-    border-color: rgb(255 255 255 / 0.1);
-  }
-  .refer-avail:hover .avail-oval,
-  .refer-avail:focus-within .avail-oval {
-    background-color: #ffffff;
-  }
-  .dark .refer-avail:hover .avail-oval,
-  .dark .refer-avail:focus-within .avail-oval {
-    background-color: #1c2430;
-  }
-  .avail-oval > p:first-child,
-  .avail-oval > .avail-pills {
-    justify-content: center;
-  }
-  .refer-avail-grid {
-    @apply mt-4 grid gap-3 md:grid-cols-3;
-  }
-  @media (min-width: 1024px) {
-    .refer-row {
-      grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
-      align-items: stretch;
-    }
-    .refer-avail {
-      padding: 1.25rem;
-    }
-    .refer-avail-grid {
-      grid-template-columns: minmax(0, 1fr);
-      flex: 1;
-      align-content: space-between;
-    }
-  }
-  /* Suburb / meta chips ------------------------------------------ */
-  .chip {
-    @apply inline-flex items-center rounded-full border border-sand-200 bg-sand-50
-           px-4 py-1.5 text-sm font-medium text-ink-700
-           dark:border-night-800 dark:bg-night-900 dark:text-cloud-200;
-  }
-
-  /* ---- Coverage area: region tabs + slowly fading detail panels ----
-     Tabs are faded until hovered/selected. All three panels share one
-     grid cell (so the card never jumps in height); the active one fades in
-     slowly after the previous one fades out, then its suburbs and service
-     ticks appear one after another. Tones: teal / blue / amber. */
+  /* ---- Coverage regions (markup is built by initRegions) ------------ */
   .region-tabs {
     @apply grid gap-3 sm:grid-cols-3;
   }
   .region-tab {
-    @apply flex items-center gap-2.5 rounded-2xl border border-sand-200 bg-white/70 p-3 text-ink-900
-           opacity-70 transition-all duration-700 ease-out
-           hover:-translate-y-0.5 hover:opacity-100 hover:shadow-soft
-           focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-teal-400/50
-           dark:border-night-800 dark:bg-night-900/60 dark:text-cloud-50;
+    @apply flex min-h-[56px] items-center gap-2.5 rounded-xl border border-line bg-surface p-3.5 text-fg
+           transition-colors hover:border-brand/40;
   }
   .region-tab-icon {
-    @apply grid h-8 w-8 shrink-0 place-items-center rounded-full bg-teal-600/10 text-teal-700
-           transition-colors duration-700 dark:bg-teal-300/15 dark:text-teal-300;
+    @apply grid h-8 w-8 shrink-0 place-items-center rounded-full bg-brand-soft text-brand;
   }
   .region-tab-icon svg {
     @apply h-5 w-5;
   }
   .region-tab[aria-selected='true'] {
-    @apply opacity-100 shadow-soft-lg;
+    @apply border-brand bg-brand text-on-brand;
   }
-  .region-tab[aria-selected='true'][data-tone='teal'] {
-    background-color: #cdebe5;
-    border-color: rgb(15 118 110 / 0.45);
-  }
-  .region-tab[aria-selected='true'][data-tone='blue'] {
-    background-color: #d6e6f8;
-    border-color: rgb(29 78 216 / 0.4);
-  }
-  .region-tab[aria-selected='true'][data-tone='amber'] {
-    background-color: #fbebc4;
-    border-color: rgb(180 83 9 / 0.45);
-  }
-  .region-tab[aria-selected='true'][data-tone='blue'] .region-tab-icon {
-    background-color: rgb(29 78 216 / 0.14);
-    color: #1d4ed8;
-  }
-  .region-tab[aria-selected='true'][data-tone='amber'] .region-tab-icon {
-    background-color: rgb(180 83 9 / 0.14);
-    color: #b45309;
-  }
-  .dark .region-tab[aria-selected='true'][data-tone='teal'] {
-    background-color: #12403c;
-    border-color: rgb(45 212 191 / 0.45);
-  }
-  .dark .region-tab[aria-selected='true'][data-tone='blue'] {
-    background-color: #14304d;
-    border-color: rgb(96 165 250 / 0.45);
-  }
-  .dark .region-tab[aria-selected='true'][data-tone='amber'] {
-    background-color: #3d3114;
-    border-color: rgb(251 191 36 / 0.45);
-  }
-  .dark .region-tab[aria-selected='true'][data-tone='blue'] .region-tab-icon {
-    background-color: rgb(96 165 250 / 0.18);
-    color: #93c5fd;
-  }
-  .dark .region-tab[aria-selected='true'][data-tone='amber'] .region-tab-icon {
-    background-color: rgb(251 191 36 / 0.18);
-    color: #fcd34d;
+  .region-tab[aria-selected='true'] .region-tab-icon {
+    background-color: rgb(var(--on-brand) / 0.15);
+    color: rgb(var(--on-brand));
   }
 
   .region-panels {
     @apply mt-4 grid;
   }
   .region-panel {
-    @apply rounded-2xl border p-5;
+    @apply rounded-2xl border border-line bg-tint p-5;
     grid-area: 1 / 1;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    /* Leaving: quick fade out, then hide. */
-    transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+    transition: opacity 0.6s var(--ease-calm), visibility 0s linear 0.6s;
   }
   .region-panel[data-active='true'] {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    /* Arriving: waits for the old panel to leave, then fades in slowly. */
-    transition: opacity 1s ease 0.35s, visibility 0s linear 0s;
+    transition: opacity 0.7s var(--ease-calm) 0.2s, visibility 0s linear 0s;
   }
-  /* Outer panel stays a neutral surface; the colour lives on the inner
-     chips and service boxes, with a subtle tinted border per region. */
-  .region-panel[data-tone='teal'] {
-    background-color: theme('colors.sand.50');
-    border-color: rgb(15 118 110 / 0.22);
-  }
-  .region-panel[data-tone='blue'] {
-    background-color: theme('colors.sand.50');
-    border-color: rgb(29 78 216 / 0.2);
-  }
-  .region-panel[data-tone='amber'] {
-    background-color: theme('colors.sand.50');
-    border-color: rgb(180 83 9 / 0.24);
-  }
-  .dark .region-panel[data-tone='teal'] {
-    background-color: theme('colors.night.800');
-    border-color: rgb(45 212 191 / 0.22);
-  }
-  .dark .region-panel[data-tone='blue'] {
-    background-color: theme('colors.night.800');
-    border-color: rgb(96 165 250 / 0.22);
-  }
-  .dark .region-panel[data-tone='amber'] {
-    background-color: theme('colors.night.800');
-    border-color: rgb(251 191 36 / 0.22);
-  }
-  .region-panel h4 {
+  .region-panel h3 {
     @apply text-lg;
   }
   .region-label {
-    @apply text-xs font-semibold uppercase tracking-wide text-ink-700 dark:text-cloud-200;
+    @apply text-xs font-semibold uppercase tracking-wide text-muted;
   }
   .region-badge {
-    @apply inline-flex items-center gap-1.5 rounded-full bg-white/75 py-1 pl-1.5 pr-3 text-xs font-semibold
-           text-ink-900 dark:bg-night-900/70 dark:text-cloud-50;
+    @apply inline-flex items-center gap-1.5 rounded-full bg-brand-soft py-1 pl-1.5 pr-3 text-xs font-semibold text-fg;
   }
   .region-badge .tick {
     @apply h-5 w-5;
   }
   .region-chip {
-    @apply rounded-full border px-3.5 py-1.5 text-sm font-medium text-ink-900 dark:text-cloud-50;
+    @apply rounded-full border border-line bg-surface px-3.5 py-1.5 text-sm font-medium text-fg;
   }
-  .region-service {
-    @apply flex items-start gap-3 rounded-xl border p-3 text-ink-700 dark:text-cloud-200;
-  }
-  /* Clinical / Personal care: the label opens a list that slides down. */
-  .region-service-toggle {
-    @apply relative block w-full rounded-lg pr-7 text-left
-           focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-teal-600/40;
-    cursor: pointer;
-  }
-  .region-service-chev {
-    @apply absolute right-0 top-0.5 h-5 w-5 text-teal-700 dark:text-teal-300;
-    transition: transform 0.6s ease;
-  }
-  .region-service-chev svg {
-    @apply h-full w-full;
-  }
-  .region-service[data-open='true'] .region-service-chev {
-    transform: rotate(180deg);
-  }
-  .region-more {
-    display: grid;
-    grid-template-rows: 0fr;
-    opacity: 0;
-    visibility: hidden;
-    transition: grid-template-rows 0.7s ease, opacity 0.6s ease, visibility 0s linear 0.7s;
-  }
-  .region-service[data-open='true'] .region-more {
-    grid-template-rows: 1fr;
-    opacity: 1;
-    visibility: visible;
-    transition: grid-template-rows 0.7s ease, opacity 0.8s ease 0.1s, visibility 0s linear 0s;
-  }
-  .region-more-inner {
-    @apply min-h-0 overflow-hidden;
-  }
-  .region-more-head {
-    @apply mt-3 border-t border-ink-900/10 pt-3 text-sm font-semibold text-ink-900
-           dark:border-cloud-50/15 dark:text-cloud-50;
-  }
-  .region-more-list {
-    @apply mt-2 space-y-1.5 text-sm;
-  }
-  .region-more-list li {
-    @apply relative pl-4;
-  }
-  .region-more-list li::before {
-    content: '';
-    @apply absolute left-0 top-[0.55em] h-1.5 w-1.5 rounded-full bg-teal-600 dark:bg-teal-300;
-  }
-
-  /* Inner blocks (suburb chips + service boxes) take a stronger shade of the
-     region's own tone, so each region colour-codes its details. */
-  .region-panel[data-tone='teal'] .region-chip,
-  .region-panel[data-tone='teal'] .region-service {
-    background-color: #e3f4f0;
-    border-color: rgb(15 118 110 / 0.22);
-  }
-  .region-panel[data-tone='blue'] .region-chip,
-  .region-panel[data-tone='blue'] .region-service {
-    background-color: #e7f0fb;
-    border-color: rgb(29 78 216 / 0.2);
-  }
-  .region-panel[data-tone='amber'] .region-chip,
-  .region-panel[data-tone='amber'] .region-service {
-    background-color: #fcf2d9;
-    border-color: rgb(180 83 9 / 0.22);
-  }
-  .dark .region-panel[data-tone='teal'] .region-chip,
-  .dark .region-panel[data-tone='teal'] .region-service {
-    background-color: rgb(15 118 110 / 0.22);
-    border-color: rgb(45 212 191 / 0.28);
-  }
-  .dark .region-panel[data-tone='blue'] .region-chip,
-  .dark .region-panel[data-tone='blue'] .region-service {
-    background-color: rgb(29 78 216 / 0.24);
-    border-color: rgb(96 165 250 / 0.3);
-  }
-  .dark .region-panel[data-tone='amber'] .region-chip,
-  .dark .region-panel[data-tone='amber'] .region-service {
-    background-color: rgb(180 83 9 / 0.26);
-    border-color: rgb(251 191 36 / 0.3);
-  }
-
-  /* Suburbs and services drift in one after another once the panel is up. */
-  .region-chip,
-  .region-service {
+  /* Suburbs drift in one after another once the panel is up
+     (delay .2s + n x 60ms). */
+  .region-chip {
     opacity: 0;
     transform: translateY(8px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }
-  .region-panel[data-active='true'] .region-chip,
-  .region-panel[data-active='true'] .region-service {
+  .region-panel[data-active='true'] .region-chip {
     opacity: 1;
     transform: translateY(0);
-    transition: opacity 0.9s ease, transform 0.9s ease;
-    transition-delay: calc(0.6s + var(--i, 0) * 90ms);
+    transition-delay: calc(0.2s + var(--i, 0) * 60ms);
   }
 
-  /* Modern tick: gradient disc with a check that draws itself, then a
-     soft ring ripples out once. */
+  /* Tick: filled brand disc with a check that draws itself. */
   .tick {
-    @apply grid h-7 w-7 shrink-0 place-items-center rounded-full text-white shadow-soft dark:text-night-900;
-    background-image: linear-gradient(135deg, theme('colors.teal.600'), theme('colors.teal.500'));
-  }
-  .dark .tick {
-    background-image: linear-gradient(135deg, theme('colors.teal.300'), theme('colors.teal.400'));
+    @apply grid h-7 w-7 shrink-0 place-items-center rounded-full bg-brand text-on-brand shadow-card;
   }
   .tick svg {
     width: 62%;
@@ -865,98 +478,112 @@
   .tick-path {
     stroke-dasharray: 16;
     stroke-dashoffset: 16;
-    transition: stroke-dashoffset 0.3s ease;
+    transition: stroke-dashoffset 0.2s ease;
   }
   .region-panel[data-active='true'] .tick-path {
     stroke-dashoffset: 0;
-    transition: stroke-dashoffset 0.8s ease;
-    transition-delay: calc(0.9s + var(--i, 0) * 90ms);
+    transition: stroke-dashoffset 0.5s ease;
+    transition-delay: calc(0.4s + var(--i, 0) * 60ms);
   }
   .region-panel[data-active='true'] .tick {
-    animation: tick-ring 1.4s ease-out 1;
-    animation-delay: calc(1.3s + var(--i, 0) * 90ms);
+    animation: tick-ring 1s ease-out 1;
+    animation-delay: calc(0.7s + var(--i, 0) * 60ms);
   }
   .region-panel[data-active='true'] .region-badge .tick {
-    animation-delay: 1.1s;
+    animation-delay: 0.6s;
   }
   .region-panel[data-active='true'] .region-badge .tick-path {
-    transition-delay: 0.9s;
+    transition-delay: 0.4s;
   }
   @keyframes tick-ring {
     0% {
-      box-shadow: 0 0 0 0 rgb(15 118 110 / 0.5);
+      box-shadow: 0 0 0 0 rgb(var(--brand) / 0.5);
     }
     100% {
-      box-shadow: 0 0 0 10px rgb(15 118 110 / 0);
+      box-shadow: 0 0 0 10px rgb(var(--brand) / 0);
     }
   }
 
-  /* One shared content width for header, sections and footer, so every
-     left/right edge lines up at all screen sizes. */
-  .container-x {
-    margin-inline: auto;
-    width: 100%;
-    max-width: 72rem;
-    padding-inline: clamp(1rem, 0.4rem + 2.5vw, 2rem);
+  /* ---- Scroll reveal ------------------------------------------------ */
+  .reveal,
+  .reveal-left,
+  .reveal-right {
+    transition-property: opacity, transform;
+    transition-duration: var(--dur-reveal);
+    transition-timing-function: var(--ease-calm);
   }
-  @media (min-width: 1536px) {
-    .container-x {
-      max-width: 80rem;
-    }
-  }
-
-  /* Section rhythm ------------------------------------------------ */
-  /* Fluid padding + a wider cap on big monitors; vertical space scales
-     with the viewport so the layout suits phones through large screens. */
-  .section {
-    @apply mx-auto w-full;
-    max-width: 72rem;
-    padding-inline: clamp(1rem, 0.4rem + 2.5vw, 2rem);
-    /* Roughly 40% tighter than before: ~2rem on phones, ~3.25rem on desktop. */
-    padding-block: clamp(2rem, 1rem + 2.5vw, 3.5rem);
-  }
-  @media (min-width: 1536px) {
-    .section {
-      max-width: 80rem;
-    }
-  }
-
-  /* Section titles use the standard h2 scale (set in @layer base);
-     this marker keeps the intent explicit in the markup. */
-  .section-title {
-    /* inherits h2 base styles */
-  }
-
-  /* Small footer column labels (not full section-heading size). */
-  .footer-label {
-    @apply font-display text-base font-semibold tracking-tight text-ink-900 dark:text-cloud-50;
-  }
-
-  /* Scroll-reveal: hidden until .is-visible is added by main.js.
-     If JS never runs, the no-js fallback (below) keeps content visible. */
   .reveal {
-    @apply translate-y-8 opacity-0 transition-all duration-[1100ms] ease-out;
+    @apply translate-y-6 opacity-0;
   }
   .reveal.is-visible {
     @apply translate-y-0 opacity-100;
   }
-  /* Directional variants (reference-style slide-ins). */
   .reveal-left {
-    @apply -translate-x-10 translate-y-0 opacity-0 transition-all duration-[1100ms] ease-out;
+    @apply -translate-x-8 translate-y-0 opacity-0;
   }
   .reveal-right {
-    @apply translate-x-10 translate-y-0 opacity-0 transition-all duration-[1100ms] ease-out;
+    @apply translate-x-8 translate-y-0 opacity-0;
   }
   .reveal-left.is-visible,
   .reveal-right.is-visible {
     @apply translate-x-0 opacity-100;
   }
 
-  /* Hero background illustration: slow, gentle drift. Disabled under
-     prefers-reduced-motion by the @media block at the top of this file. */
-  .hero-float {
-    @apply animate-float;
-    will-change: transform;
+  /* ---- Hover "breathing" ---------------------------------------------
+     Interactive cards, tabs and primary buttons ease up and glow on hover
+     (pointer devices only). While the pointer stays, the glow and a tiny
+     float pulse slowly. Only box-shadow and the individual translate
+     property are animated, so text opacity never changes and it composes
+     with the scroll-reveal transform. Keyboard focus gets the same calm
+     lift without the loop. ---- */
+  .lift,
+  .btn-primary,
+  .btn-phone,
+  .step-tab,
+  .region-tab {
+    transition-property: color, background-color, border-color, box-shadow, translate;
+    transition-duration: var(--dur-hover);
+    transition-timing-function: var(--ease-calm);
+  }
+  /* A card that also reveals on scroll keeps the slower reveal timing for
+     opacity/transform. */
+  .reveal.lift {
+    transition-property: opacity, transform, border-color, box-shadow, translate;
+    transition-duration: var(--dur-reveal), var(--dur-reveal), var(--dur-hover), var(--dur-hover), var(--dur-hover);
+  }
+  @media (hover: hover) {
+    .lift:hover,
+    .btn-primary:hover,
+    .btn-phone:hover,
+    .step-tab:hover,
+    .region-tab:hover {
+      box-shadow: 0 0 0 1px rgb(var(--brand) / 0.2), 0 16px 36px -16px rgb(var(--brand) / 0.15);
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    @media (hover: hover) {
+      .lift:hover,
+      .btn-primary:hover,
+      .btn-phone:hover,
+      .step-tab:hover,
+      .region-tab:hover {
+        translate: 0 -2px;
+        animation: breathe var(--dur-loop) ease-in-out var(--dur-hover) infinite alternate;
+      }
+    }
+    .lift:focus-visible,
+    .btn-primary:focus-visible,
+    .btn-phone:focus-visible,
+    .step-tab:focus-visible,
+    .region-tab:focus-visible {
+      translate: 0 -2px;
+    }
+  }
+  @keyframes breathe {
+    to {
+      translate: 0 -4px;
+      box-shadow: 0 0 0 1px rgb(var(--brand) / 0.35), 0 20px 44px -16px rgb(var(--brand) / 0.35);
+    }
   }
 
   /* Visually-hidden honeypot field (bots fill it, humans never see it). */
@@ -969,17 +596,35 @@
   }
 }
 
-/* No-JS safety net: if JS is disabled, reveal content is shown immediately. */
+/* No-JS safety net: reveal content is shown immediately, nav links stack
+   below the wordmark row instead of being squeezed into the header row. */
 .no-js .reveal,
 .no-js .reveal-left,
 .no-js .reveal-right {
   opacity: 1;
   transform: none;
 }
+.no-js header > div {
+  height: auto;
+  flex-wrap: wrap;
+  padding-block: 0.5rem;
+}
+.no-js #site-nav {
+  display: block;
+  position: static;
+  width: 100%;
+  order: 10;
+  max-height: none;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+.no-js #nav-toggle {
+  display: none;
+}
 
 /* Links inside body paragraphs must be distinguishable by more than colour
-   (WCAG 1.4.1). Underline them by default; buttons/nav links opt out via
-   their own classes which set text-decoration elsewhere. */
+   (WCAG 1.4.1). Buttons opt out via their btn-* classes. */
 p a[href]:not([class*='btn-']) {
   text-decoration: underline;
   text-underline-offset: 2px;
