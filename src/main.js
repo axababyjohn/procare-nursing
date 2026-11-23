@@ -164,6 +164,8 @@ function initRegions() {
   if (!host || !regions.length) return;
 
   const types = SITE.serviceTypes || {};
+  const program = SITE.programIncludes || {};
+  const programItems = (program.items || []).filter(Boolean);
   const tabs = makeEl('div', 'region-tabs');
   tabs.setAttribute('role', 'tablist');
   tabs.setAttribute('aria-label', 'Coverage regions');
@@ -215,15 +217,54 @@ function initRegions() {
     panel.appendChild(chipList);
 
     panel.appendChild(makeEl('p', 'region-label mt-5', 'Service type'));
-    const serviceList = makeEl('ul', 'mt-2 grid gap-2.5 sm:grid-cols-2');
+    const serviceList = makeEl('ul', 'mt-2 grid items-start gap-2.5 sm:grid-cols-2');
     SERVICE_KEYS[kind].forEach((key, n) => {
       const def = types[key] || { label: key, detail: '' };
       const li = makeEl('li', 'region-service');
       li.style.setProperty('--i', String(suburbs.length + n));
       li.appendChild(makeTick());
-      const text = makeEl('span', 'block');
-      text.appendChild(makeEl('span', 'block font-semibold text-ink-900 dark:text-cloud-50', def.label));
-      if (def.detail) text.appendChild(makeEl('span', 'block text-sm', def.detail));
+      const text = makeEl('div', 'min-w-0 flex-1');
+      const more = (key === 'clinical' || key === 'personal') ? programItems : [];
+
+      if (more.length) {
+        // Label is a button so keyboard and touch users can open the list too.
+        const moreId = 'region-' + i + '-' + key + '-more';
+        const toggle = makeEl('button', 'region-service-toggle');
+        toggle.type = 'button';
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-controls', moreId);
+        toggle.appendChild(makeEl('span', 'block font-semibold text-ink-900 dark:text-cloud-50', def.label));
+        if (def.detail) toggle.appendChild(makeEl('span', 'block text-sm', def.detail));
+        const chev = makeEl('span', 'region-service-chev');
+        chev.setAttribute('aria-hidden', 'true');
+        chev.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+        toggle.appendChild(chev);
+        text.appendChild(toggle);
+
+        const box = makeEl('div', 'region-more');
+        box.id = moreId;
+        const inner = makeEl('div', 'region-more-inner');
+        if (program.heading) inner.appendChild(makeEl('p', 'region-more-head', program.heading));
+        const list = makeEl('ul', 'region-more-list');
+        more.forEach((item) => list.appendChild(makeEl('li', '', item)));
+        inner.appendChild(list);
+        box.appendChild(inner);
+        text.appendChild(box);
+        li.classList.add('has-more');
+
+        const setOpen = (open) => {
+          li.setAttribute('data-open', String(open));
+          toggle.setAttribute('aria-expanded', String(open));
+        };
+        // Mouse: open while the cursor is on the box. Touch/keyboard: tap or
+        // Enter toggles. (Pointer type check stops a tap opening then closing.)
+        li.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') setOpen(true); });
+        li.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') setOpen(false); });
+        toggle.addEventListener('click', () => setOpen(li.getAttribute('data-open') !== 'true'));
+      } else {
+        text.appendChild(makeEl('span', 'block font-semibold text-ink-900 dark:text-cloud-50', def.label));
+        if (def.detail) text.appendChild(makeEl('span', 'block text-sm', def.detail));
+      }
       li.appendChild(text);
       serviceList.appendChild(li);
     });
