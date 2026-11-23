@@ -167,6 +167,21 @@
     outline-color: #5eead4;
   }
 
+  /* ---- Hero photo: natural 3:2, left and top/bottom edges fade into the band ---- */
+  .hero-band {
+    --hero-photo-w: min(56vw, 1000px);
+  }
+  @media (min-width: 768px) {
+    .hero-band {
+      min-height: calc(var(--hero-photo-w) * 0.667);
+    }
+    .hero-photo-img {
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 34%), linear-gradient(to bottom, transparent 0, #000 7%, #000 93%, transparent 100%);
+      -webkit-mask-composite: source-in;
+      mask-image: linear-gradient(to right, transparent 0, #000 34%), linear-gradient(to bottom, transparent 0, #000 7%, #000 93%, transparent 100%);
+      mask-composite: intersect;
+    }
+  }
   /* ---- Layout ------------------------------------------------------ */
   .container-x {
     margin-inline: auto;
