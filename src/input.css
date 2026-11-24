@@ -257,6 +257,11 @@
   .card-static {
     @apply rounded-2xl border border-line bg-surface p-6 shadow-card sm:p-7;
   }
+  /* Round tick used for service lists: brand circle, white check, soft halo. */
+  .svc-tick {
+    @apply mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-brand text-on-brand;
+    box-shadow: 0 0 0 5px rgb(var(--brand) / 0.32);
+  }
   .icon-badge {
     @apply grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand text-on-brand;
   }
